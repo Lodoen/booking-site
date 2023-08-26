@@ -15,14 +15,16 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-          <Route path="venue/:id" element={<Venue />} />
-          <Route path="venue/:id/manage" element={<Manage />} />
+          <Route path="venue/:id">
+            <Route index element={<Venue />} />
+            <Route path="manage" element={<Manage />} />
+          </Route>
           <Route path="create" element={<Create />} />
           <Route path="profile" element={<Profile />} />
           <Route path="*" element={<RouteNotFound />} />
         </Route>
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
       </Routes>
     </div>
   );
