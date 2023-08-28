@@ -1,9 +1,11 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import RegisterAttempt from "./RegisterAttempt";
+import { UserContext } from "../../context/UserContext";
+import useAuth from "../../hooks/useAuth";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 const schema = yup
   .object({
@@ -30,7 +32,12 @@ const schema = yup
   .required();
 
 export default function Register() {
-  const [newAccount, setNewAccount] = useState(false);
+  const navigate = useNavigate();
+  const { login, registerUser } = useAuth();
+  const { save } = useLocalStorage("user");
+  const { setUser } = useContext(UserContext);
+
+  const [showFeedback, setShowFeedback] = useState(false);
 
   const {
     register,
@@ -40,8 +47,28 @@ export default function Register() {
     resolver: yupResolver(schema),
   });
 
-  function onSubmit(data) {
-    setNewAccount(data);
+  async function onSubmit(data) {
+    try {
+      setShowFeedback("Loading register ...");
+      const { fetchedRegister, stringifiedRegister } = await registerUser(data);
+
+      if (fetchedRegister.ok) {
+        setShowFeedback("Loading login ...");
+        const { fetchedLogin, stringifiedLogin } = await login(data);
+
+        if (fetchedLogin.ok) {
+          save(stringifiedLogin);
+          setUser(stringifiedLogin);
+          navigate("/profile");
+        } else {
+          setShowFeedback(stringifiedLogin.errors[0].message);
+        }
+      } else {
+        setShowFeedback(stringifiedRegister.errors[0].message);
+      }
+    } catch (error) {
+      setShowFeedback("Encountered error on register");
+    }
   }
 
   return (
@@ -77,7 +104,7 @@ export default function Register() {
         <button type="submit">Register</button>
       </form>
 
-      {newAccount ? <RegisterAttempt userData={newAccount} /> : ""}
+      {showFeedback ? <p>{showFeedback}</p> : null}
     </div>
   );
 }
