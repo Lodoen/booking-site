@@ -5,6 +5,23 @@ export default function useVenue() {
   const url = import.meta.env.VITE_API_URL + "/venues";
   const { user } = useContext(UserContext);
 
+  const create = async (body) => {
+    try {
+      const fetchedCreate = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.accessToken}`,
+        },
+        body: JSON.stringify(body),
+      });
+      const stringifiedCreate = await fetchedCreate.json();
+      return { fetchedCreate, stringifiedCreate };
+    } catch (error) {
+      return undefined;
+    }
+  };
+
   const update = async (id, body) => {
     try {
       const fetchedUpdate = await fetch(url + `/${id}`, {
@@ -37,6 +54,7 @@ export default function useVenue() {
   };
 
   return {
+    create,
     update,
     remove,
   };
