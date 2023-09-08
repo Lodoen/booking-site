@@ -22,7 +22,22 @@ export default function useBooking() {
     }
   };
 
+  const remove = async (id) => {
+    try {
+      const fetchedRemove = await fetch(url + `/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${user.accessToken}`,
+        },
+      });
+      return { fetchedRemove };
+    } catch (error) {
+      return undefined;
+    }
+  };
+
   return {
     create,
+    remove,
   };
 }
