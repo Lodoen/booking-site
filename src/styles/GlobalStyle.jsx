@@ -17,16 +17,6 @@ const GlobalStyle = createGlobalStyle`
         font-family:  Georgia,Times,Times New Roman,serif;
         font-weight: normal;
     }
-
-    main a{
-        color: #0A5485;
-        font-family:  Verdana,Geneva,sans-serif; 
-        font-style: italic;
-        text-decoration: none;
-        &:hover{
-            text-decoration: underline;
-        }
-    }
 `;
 
 export default GlobalStyle;
