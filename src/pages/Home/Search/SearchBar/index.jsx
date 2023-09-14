@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { BsXLg } from "react-icons/bs";
+import * as S from "./index.styles";
 
 function extractLocationInfo(location) {
   const { address, city, country } = location;
@@ -34,14 +36,20 @@ export default function SearchBar({ allVenues, setVenues }) {
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="Search"
-        value={searchValue}
-        onChange={handleSearchChange}
-      />
-      <button onClick={handleClear}>Clear</button>
-    </div>
+    <S.SearchContainer>
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search"
+          value={searchValue}
+          onChange={handleSearchChange}
+        />
+        <button onClick={handleClear}>
+          <figure>
+            <BsXLg />
+          </figure>
+        </button>
+      </div>
+    </S.SearchContainer>
   );
 }

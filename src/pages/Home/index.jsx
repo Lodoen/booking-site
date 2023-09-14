@@ -30,10 +30,10 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <section>
       <h1>Home</h1>
       <Search allVenues={[...data]} setVenues={setVenuesToRender} />
       <VenueList venues={venuesToRender} />
-    </div>
+    </section>
   );
 }
