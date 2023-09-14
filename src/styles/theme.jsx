@@ -3,6 +3,7 @@ import { ThemeProvider } from "styled-components";
 const theme = {
   screen: {
     max: "800px",
+    "extra-small": "300px",
     small: "450px",
     medium: "600px",
   },
