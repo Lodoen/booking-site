@@ -32,7 +32,7 @@ export default function Nav() {
         {user && user.name ? (
           <DropdownButton />
         ) : (
-          <Link to="/login" className="login-href">
+          <Link to="/auth/login" className="login-href">
             Login
           </Link>
         )}
