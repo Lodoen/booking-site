@@ -14,7 +14,8 @@ const GlobalStyle = createGlobalStyle`
     }
 
     h1{
-        font-family:  Georgia,Times,Times New Roman,serif; 
+        font-family:  Georgia,Times,Times New Roman,serif;
+        font-weight: normal;
     }
 
     main a{
