@@ -8,6 +8,8 @@ import {
   BsFillCupHotFill,
 } from "react-icons/bs";
 import { GiSittingDog } from "react-icons/gi";
+import * as S from "./index.styles";
+import undefinedImg from "../../../assets/no-image-available.png";
 
 export default function VenueItem({
   id,
@@ -21,39 +23,53 @@ export default function VenueItem({
 }) {
   try {
     return (
-      <div style={{ border: "1px solid #000", padding: "10px" }}>
+      <S.VenueItem>
         <Link to={`/venue/${id}`}>
-          {media.length > 0 ? (
+          <figure className="venue-showcase">
             <img
-              src={media[0]}
-              alt="venue showcase"
-              style={{ width: "100px", height: "100px" }}
+              src={media && media.length > 0 ? media[0] : undefinedImg}
+              alt="Venue showcase"
             />
-          ) : (
-            <div>No image given</div>
-          )}
-          <h2>{name}</h2>
-          <div>
-            <BsFillStarFill />
-            {rating}
+          </figure>
+          <div className="title-and-rating">
+            <h2>{name}</h2>
+            <div className="detail">
+              <figure>
+                <BsFillStarFill />
+              </figure>
+              {rating}
+            </div>
           </div>
-          <div>
-            <BsPinMap />
+          <div className="detail">
+            <figure>
+              <BsPinMap />
+            </figure>
             {location.city}, {location.country}
           </div>
-          <div>
-            <BsPerson />
+          <div className="detail">
+            <figure>
+              <BsPerson />
+            </figure>
+
             {maxGuests}
           </div>
-          <div>
-            <div>{meta.wifi && <BsWifi />}</div>
-            <div>{meta.parking && <BsFillCarFrontFill />}</div>
-            <div>{meta.breakfast && <BsFillCupHotFill />}</div>
-            <div>{meta.pets && <GiSittingDog />}</div>
+          <div className="detail">
+            <figure>{meta.wifi && <BsWifi title="Wifi included" />}</figure>
+            <figure>
+              {meta.parking && <BsFillCarFrontFill title="Parking included" />}
+            </figure>
+            <figure>
+              {meta.breakfast && (
+                <BsFillCupHotFill title="Breakfast included" />
+              )}
+            </figure>
+            <figure>
+              {meta.pets && <GiSittingDog title="Pets allowed" />}
+            </figure>
           </div>
-          <div>{price}kr per night</div>
+          <div className="detail">{price}kr per night</div>
         </Link>
-      </div>
+      </S.VenueItem>
     );
   } catch (error) {
     return <div>error</div>;
