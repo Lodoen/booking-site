@@ -1,10 +1,16 @@
 import styled from "styled-components";
 
 export const Header = styled.header`
+  background-color: ${({ theme }) => theme.colors.secondary};
+
   .header-content {
+    max-width: ${({ theme }) => theme.screen.max};
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 100px auto;
     gap: 30px;
+    padding: 15px;
+    color: #fff;
 
     figure {
       margin: 0;
@@ -12,11 +18,6 @@ export const Header = styled.header`
       align-items: center;
       justify-content: center;
     }
-
-    padding: 15px;
-
-    background-color: ${({ theme }) => theme.colors.secondary};
-    color: #fff;
 
     a {
       color: #fff;

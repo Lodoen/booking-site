@@ -7,7 +7,9 @@ export default function Layout() {
   return (
     <S.Container>
       <Header />
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
       <Footer />
     </S.Container>
   );
