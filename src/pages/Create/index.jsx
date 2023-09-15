@@ -30,9 +30,9 @@ export default function Create() {
   };
 
   return user && user.venueManager ? (
-    <div>
+    <section>
       <VenueManagement submitFunction={createVenue} /> <p>{feedback}</p>
-    </div>
+    </section>
   ) : (
     <div>You have to be a venue manager to create venues</div>
   );
