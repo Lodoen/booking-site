@@ -5,6 +5,7 @@ import * as yup from "yup";
 import useProfile from "./useProfile";
 import useLocalStorage from "../../../../hooks/useLocalStorage";
 import { UserContext } from "../../../../context/UserContext";
+import * as S from "./index.styles";
 
 const schema = yup
   .object({
@@ -55,14 +56,14 @@ export default function UpdateProfile({
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="avatar">Avatar:</label>
-        <input {...register("avatar")} />
+    <S.UpdateProfileForm onSubmit={handleSubmit(onSubmit)}>
+      <label htmlFor="avatar">New avatar (URL):</label>
+      <div className="input-group">
+        <input {...register("avatar")} type="text" />
         <p>{errors.avatar?.message}</p>
-        <button type="submit">Update</button>
-      </form>
+      </div>
+      <button type="submit">Update</button>
       {showFeedback ? <p>{showFeedback}</p> : null}
-    </div>
+    </S.UpdateProfileForm>
   );
 }
