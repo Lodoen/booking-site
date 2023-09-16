@@ -125,7 +125,7 @@ export default function VenueManagementForm({
 
   return (
     <S.VenueManagementForm onSubmit={handleSubmit(onSubmit)}>
-      <h1>{venue ? "Create venue" : "Create venue"}</h1>
+      {!venue && <h1>Create venue</h1>}
 
       <div className="image-details-wrapper">
         <section>
@@ -261,7 +261,7 @@ export default function VenueManagementForm({
       </div>
 
       <div>
-        <div className="input-group">
+        <div className="input-group description-wrapper">
           <label htmlFor="description">Description*:</label>
           <textarea
             {...register("description")}

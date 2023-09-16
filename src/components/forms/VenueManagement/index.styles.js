@@ -17,4 +17,8 @@ export const VenueShowcaseWrapper = styled.div`
       gap: 25px;
     }
   }
+
+  .description-wrapper {
+    margin: 20px 0;
+  }
 `;
