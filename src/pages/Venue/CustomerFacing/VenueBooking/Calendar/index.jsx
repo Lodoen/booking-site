@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import CalendarTable from "./CalendarTable";
 import { BookingContext } from "../../../../../context/BookingContext";
 import useCalendar from "./useCalendar";
+import * as S from "./index.styles";
 
 export default function Calendar() {
   const { currentBookings } = useContext(BookingContext);
@@ -38,8 +39,8 @@ export default function Calendar() {
   ];
 
   return (
-    <div>
-      <div>
+    <S.Calendar>
+      <div className="calendar-controls">
         <button onClick={handleMonthDecrease}>-</button>
         <div>
           {monthNames[date.getMonth()]} {date.getFullYear()}
@@ -48,6 +49,6 @@ export default function Calendar() {
       </div>
 
       <CalendarTable weeks={listOfDates} />
-    </div>
+    </S.Calendar>
   );
 }
