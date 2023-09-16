@@ -3,19 +3,20 @@ import { BookingContext } from "../../../../../context/BookingContext";
 import useBooking from "../../../../../hooks/useBooking";
 import useExtractFromDate from "../../../../../hooks/useExtractFromDate";
 import useBookingForm from "./useBookingForm";
+import * as S from "./index.styles";
 
 export default function BookingForm({ venueInfo }) {
   const { extractDate } = useExtractFromDate();
   const { checkAvailableDates } = useBookingForm();
   const { create } = useBooking();
+
   const { yourBooking, setYourBooking, currentBookings, setCurrentBookings } =
     useContext(BookingContext);
   const [guests, setGuests] = useState(1);
   const [feedback, setFeedback] = useState(undefined);
+  const { id, maxGuests } = venueInfo;
 
   const handleGuestChange = (event) => setGuests(event.target.value);
-
-  const { id, maxGuests } = venueInfo;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -44,6 +45,7 @@ export default function BookingForm({ venueInfo }) {
         if (fetchedUpdate.ok) {
           setFeedback("Venue successfully booked!");
           setYourBooking({ start: undefined, end: undefined });
+          setGuests(1);
           setCurrentBookings((prevBookings) => [
             ...prevBookings,
             stringifiedUpdate,
@@ -60,35 +62,36 @@ export default function BookingForm({ venueInfo }) {
   };
 
   return (
-    <section>
-      <h3>Order info</h3>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="number"
-          onChange={handleGuestChange}
-          min={1}
-          max={maxGuests ? maxGuests : 1}
-          value={guests}
-          required
-          pattern={`[1-${maxGuests ? maxGuests : 1}]`}
-          title={`Please enter a number between 1 and ${
-            maxGuests ? maxGuests : 1
-          }`}
-        />
-        <button type="submit">Submit</button>
-      </form>
-      {feedback && <div>{feedback}</div>}
+    <S.OrderWrapper>
+      <h3>Order</h3>
       <div>
-        <h4>Your booking</h4>
         <p>
-          <span>From: </span>
+          <span>Check-in: </span>
           {yourBooking.start ? extractDate(yourBooking.start) : "undecided"}
         </p>
         <p>
-          <span>Until: </span>
+          <span>Checkout: </span>
           {yourBooking.end ? extractDate(yourBooking.end) : "undecided"}
         </p>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="guests">Number of guests:</label>
+          <input
+            type="number"
+            id="guests"
+            onChange={handleGuestChange}
+            min={1}
+            max={maxGuests ? maxGuests : 1}
+            value={guests}
+            required
+            pattern={`[1-${maxGuests ? maxGuests : 1}]`}
+            title={`Please enter a number between 1 and ${
+              maxGuests ? maxGuests : 1
+            }`}
+          />
+          <button type="submit">Book venue</button>
+        </form>
+        {feedback && <div>{feedback}</div>}
       </div>
-    </section>
+    </S.OrderWrapper>
   );
 }
