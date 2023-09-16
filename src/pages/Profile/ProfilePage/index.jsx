@@ -3,6 +3,9 @@ import useReadProfile from "./useReadProfile";
 import UpdateProfile from "./UpdateProfile";
 import YourVenues from "./YourVenues";
 import YourBookings from "./YourBookings";
+import { BsCaretDown, BsCaretUp } from "react-icons/bs";
+import * as S from "./index.styles";
+import undefinedImg from "../../../assets/no-image-available.png";
 
 export default function ProfilePage({ user }) {
   const [profile, setProfile] = useState({});
@@ -11,6 +14,9 @@ export default function ProfilePage({ user }) {
     user.name,
     user.accessToken,
   );
+
+  const [isShowingVenues, setIsShowingVenues] = useState(true);
+  const [isShowingBookings, setIsShowingBookings] = useState(true);
 
   useEffect(() => {
     setProfile(data);
@@ -34,12 +40,22 @@ export default function ProfilePage({ user }) {
 
   const { avatar, name, venueManager, venues, bookings } = profile;
   return (
-    <div>
-      <section>
-        <div>{avatar ? <img src={avatar} /> : <span>No image</span>}</div>
-        <h1>{name ? name : "Undefined"}</h1>
-        <p>{venueManager ? "Venue Manager" : "Customer"}</p>
-        <button onClick={() => setIsUpdating(!isUpdating)}>Update</button>
+    <S.ProfilePage>
+      <section className="profile-details">
+        <figure>
+          {<img src={avatar ? avatar : undefinedImg} alt="Profile image" />}
+        </figure>
+        <div>
+          <h1>{name ? name : "Undefined"}</h1>
+          <p>{venueManager ? "Venue Manager" : "Customer"}</p>
+          <button
+            onClick={() => setIsUpdating(!isUpdating)}
+            className="toggle-update-form-button"
+          >
+            {isUpdating ? "Close update form" : "Open update form"} &gt;&gt;
+          </button>
+        </div>
+
         {isUpdating && (
           <UpdateProfile
             previousProfileData={user}
@@ -49,14 +65,27 @@ export default function ProfilePage({ user }) {
       </section>
       {user.venueManager && (
         <section>
-          <h2>Your venues</h2>
-          <YourVenues venues={venues} />
+          <div className="profile-controls">
+            <h2>Your venues</h2>
+            <button onClick={() => setIsShowingVenues(!isShowingVenues)}>
+              {isShowingVenues ? <BsCaretDown /> : <BsCaretUp />}
+            </button>
+          </div>
+          <YourVenues venues={venues} isShowingVenues={isShowingVenues} />
         </section>
       )}
       <section>
-        <h2>Your Bookings</h2>
-        <YourBookings bookings={bookings} />
+        <div className="profile-controls">
+          <h2>Your Bookings</h2>
+          <button onClick={() => setIsShowingBookings(!isShowingBookings)}>
+            {isShowingBookings ? <BsCaretDown /> : <BsCaretUp />}
+          </button>
+        </div>
+        <YourBookings
+          bookings={bookings}
+          isShowingBookings={isShowingBookings}
+        />
       </section>
-    </div>
+    </S.ProfilePage>
   );
 }
