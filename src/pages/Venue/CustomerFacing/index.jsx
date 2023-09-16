@@ -4,12 +4,12 @@ import VenueBooking from "./VenueBooking";
 export default function CustomerFacing({ venue }) {
   const { bookings, id, ...restOfVenue } = venue;
   return (
-    <div>
+    <section>
       <VenueDetails venue={restOfVenue} />
       <VenueBooking
         bookings={bookings}
         venueInfo={{ id, maxGuests: restOfVenue.maxGuests }}
       />
-    </div>
+    </section>
   );
 }
