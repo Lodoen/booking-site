@@ -9,6 +9,7 @@ export default function CalendarTableData({ week = [] }) {
 
   const handleBookingChange = (props) => {
     const { dateUTC } = props;
+
     //initiate new booking
     if (!yourBooking.start || (yourBooking.start && yourBooking.end)) {
       setYourBooking({ start: dateUTC, end: undefined });
@@ -35,14 +36,17 @@ export default function CalendarTableData({ week = [] }) {
         const dayInWeek = week.find((day) => day.weekdayIndex === index);
         return dayInWeek ? (
           <td key={index}>
-            <button
-              onClick={() => {
-                handleBookingChange(dayInWeek);
-              }}
-              disabled={!dayInWeek.isAvailable}
-            >
-              {dayInWeek.isAvailable ? dayInWeek.date : dayInWeek.date + "(D)"}
-            </button>
+            {dayInWeek.isAvailable ? (
+              <button
+                onClick={() => {
+                  handleBookingChange(dayInWeek);
+                }}
+              >
+                {dayInWeek.date}
+              </button>
+            ) : (
+              <span>{dayInWeek.date}</span>
+            )}
           </td>
         ) : (
           <td key={index}></td>
