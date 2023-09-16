@@ -1,16 +1,9 @@
-import { useState } from "react";
 import YourBookingsList from "./YourBookingsList";
 
-export default function YourBookings({ bookings }) {
-  const [isShowingBookings, setIsShowingBookings] = useState(true);
+export default function YourBookings({ bookings, isShowingBookings }) {
   return (
-    <div>
-      <button onClick={() => setIsShowingBookings(!isShowingBookings)}>
-        {isShowingBookings ? "HIDE" : "SHOW"}
-      </button>
-      {isShowingBookings && (
-        <YourBookingsList bookings={bookings ? bookings : []} />
-      )}
-    </div>
+    isShowingBookings && (
+      <YourBookingsList bookings={bookings ? bookings : []} />
+    )
   );
 }
