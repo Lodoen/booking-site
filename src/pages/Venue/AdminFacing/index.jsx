@@ -3,6 +3,7 @@ import VenueManagement from "../../../components/forms/VenueManagement";
 import useVenue from "../../../hooks/useVenue";
 import VenueDetails from "../VenueDetails";
 import BookingManagement from "./BookingManagement";
+import * as S from "./index.styles";
 
 export default function AdminFacing({ venue }) {
   const { id, bookings, ...restOfVenue } = venue;
@@ -53,31 +54,31 @@ export default function AdminFacing({ venue }) {
   };
 
   return (
-    <div>
-      <h1>Admin facing</h1>
-      <div>
-        <button
-          onClick={() => setIsShowingDeleteView(!isShowingDeleteView)}
-          disabled={isDisabled}
-        >
-          Delete venue
-        </button>
-      </div>
+    <S.AdminSection>
       {isShowingDeleteView ? (
         <div>
           {isDeleted ? (
             <div>
-              <h2>Venue deleted</h2>
+              <h1>Venue deleted</h1>
             </div>
           ) : (
             <div>
-              <h2>Delete venue?</h2>
+              <h1>Delete venue?</h1>
               <p>
                 Are you sure you want to delete the venue? This action is
                 irreversible.
               </p>
-              <button onClick={() => removeVenue()}>
+              <button
+                onClick={() => removeVenue()}
+                className="delete-view-button"
+              >
                 I`m sure, delete the venue
+              </button>
+              <button
+                onClick={() => setIsShowingDeleteView(false)}
+                className="delete-view-button"
+              >
+                No, back to venue page
               </button>
               {showRemoveFeedback && <div>{showRemoveFeedback}</div>}
             </div>
@@ -85,10 +86,21 @@ export default function AdminFacing({ venue }) {
         </div>
       ) : (
         <div>
-          <div>
-            <button onClick={() => setIsShowingAdminView(!isShowingAdminView)}>
-              Update venue
-            </button>
+          <div className="admin-controls-wrapper">
+            <h1>Manage venue</h1>
+            <div className="admin-controls">
+              <button
+                onClick={() => setIsShowingDeleteView(true)}
+                disabled={isDisabled}
+              >
+                Delete venue
+              </button>
+              <button
+                onClick={() => setIsShowingAdminView(!isShowingAdminView)}
+              >
+                Update venue
+              </button>
+            </div>
           </div>
           {isShowingAdminView ? (
             <VenueManagement
@@ -103,6 +115,6 @@ export default function AdminFacing({ venue }) {
           <BookingManagement bookings={bookings} />
         </div>
       )}
-    </div>
+    </S.AdminSection>
   );
 }
