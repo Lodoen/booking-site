@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BookingContext } from "../../../../context/BookingContext";
 import Calendar from "./Calendar";
 import BookingForm from "./BookingForm";
+import * as S from "./index.styles";
 
 export default function VenueBooking({ bookings = [], venueInfo }) {
   const [currentBookings, setCurrentBookings] = useState([...bookings]);
@@ -11,7 +12,7 @@ export default function VenueBooking({ bookings = [], venueInfo }) {
   });
 
   return (
-    <div>
+    <S.VenueBooking>
       <h2>Booking the venue</h2>
       <BookingContext.Provider
         value={{
@@ -24,6 +25,6 @@ export default function VenueBooking({ bookings = [], venueInfo }) {
         <Calendar />
         <BookingForm venueInfo={venueInfo} />
       </BookingContext.Provider>
-    </div>
+    </S.VenueBooking>
   );
 }
