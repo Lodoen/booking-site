@@ -1,17 +1,18 @@
 import CalendarTableData from "./CalendarTableData";
+import * as S from "./index.styles";
 
 export default function CalendarTable({ weeks = [] }) {
   return (
-    <table>
+    <S.CalendarTable>
       <thead>
         <tr>
-          <th>Sunday</th>
-          <th>Monday</th>
-          <th>Tuesday</th>
-          <th>Wednesday</th>
-          <th>Thursday</th>
-          <th>Friday</th>
-          <th>Saturday</th>
+          <th>Sun</th>
+          <th>Mon</th>
+          <th>Tue</th>
+          <th>Wed</th>
+          <th>Thu</th>
+          <th>Fri</th>
+          <th>Sat</th>
         </tr>
       </thead>
       <tbody>
@@ -19,6 +20,6 @@ export default function CalendarTable({ weeks = [] }) {
           <CalendarTableData key={index} week={week} />
         ))}
       </tbody>
-    </table>
+    </S.CalendarTable>
   );
 }
