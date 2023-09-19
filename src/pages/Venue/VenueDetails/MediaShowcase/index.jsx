@@ -5,7 +5,7 @@ import { BsXLg } from "react-icons/bs";
 
 export default function MediaShowcase({ media = [] }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <S.MediaShowcase>
