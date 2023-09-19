@@ -9,6 +9,7 @@ import {
 } from "react-icons/bs";
 import { GiSittingDog } from "react-icons/gi";
 import * as S from "./index.styles";
+import MediaShowcase from "./MediaShowcase";
 
 export default function VenueDetails({ venue }) {
   if (!venue) {
@@ -21,18 +22,7 @@ export default function VenueDetails({ venue }) {
   return (
     <S.VenueDetails>
       <div className="image-details-wrapper">
-        <div>
-          {media && media.length > 0 ? (
-            <img
-              src={media[0]}
-              alt="venue showcase"
-              style={{ width: "100px", height: "100px" }}
-            />
-          ) : (
-            <div>No image given</div>
-          )}
-        </div>
-
+        <MediaShowcase media={media ? media : []} />
         <section>
           <h2>{venue.name}</h2>
 
