@@ -1,4 +1,4 @@
 import styled from "styled-components";
-import { BaseForm } from "../../../components/forms/BaseForm/index.styles";
+import { LoginForm } from "../../Login/LoginForm/index.styles";
 
-export const RegisterForm = styled(BaseForm)``;
+export const RegisterForm = styled(LoginForm)``;
