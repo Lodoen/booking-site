@@ -26,6 +26,9 @@ export const CalendarTable = styled.table`
     }
     button {
       border-radius: 0;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 `;
