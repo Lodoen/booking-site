@@ -10,8 +10,11 @@ import {
 import { GiSittingDog } from "react-icons/gi";
 import * as S from "./index.styles";
 import MediaShowcase from "./MediaShowcase";
+import useCheckUndefined from "../../../hooks/useCheckUndefined";
 
 export default function VenueDetails({ venue, isCustomerView = true }) {
+  const { checkUndefined } = useCheckUndefined();
+
   if (!venue) {
     return <div>Found no venue</div>;
   }
@@ -24,7 +27,11 @@ export default function VenueDetails({ venue, isCustomerView = true }) {
       <div className="image-details-wrapper">
         <MediaShowcase media={media ? media : []} />
         <section>
-          {isCustomerView ? <h1>{venue.name}</h1> : <h2>{venue.name}</h2>}
+          {isCustomerView ? (
+            <h1>{checkUndefined(venue.name)}</h1>
+          ) : (
+            <h2>{checkUndefined(venue.name)}</h2>
+          )}
 
           <div className="details-amenities-wrapper">
             <section>
@@ -33,7 +40,8 @@ export default function VenueDetails({ venue, isCustomerView = true }) {
                 <BsPinMap />
                 {location ? (
                   <span>
-                    {location.city}, {location.country}
+                    {checkUndefined(location.city)},{" "}
+                    {checkUndefined(location.country)}
                   </span>
                 ) : (
                   <div>No location information given</div>
@@ -57,8 +65,8 @@ export default function VenueDetails({ venue, isCustomerView = true }) {
               </div>
               <div>
                 <BsFillStarFill />
-                {rating && rating ? (
-                  <span>{rating}</span>
+                {checkUndefined(rating) ? (
+                  <span>{checkUndefined(rating)}</span>
                 ) : (
                   <div>No rating information given</div>
                 )}
