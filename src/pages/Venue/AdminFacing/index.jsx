@@ -4,7 +4,9 @@ import AdminView from "./AdminView";
 import * as S from "./index.styles";
 
 export default function AdminFacing({ venue }) {
-  const { id, ...restOfVenue } = venue;
+  const { id, bookings, ...restOfVenue } = venue;
+
+  const [venueDetails, setVenueDetails] = useState(restOfVenue);
   const [isShowingDeleteView, setIsShowingDeleteView] = useState(false);
 
   return (
@@ -14,7 +16,9 @@ export default function AdminFacing({ venue }) {
       ) : (
         <AdminView
           id={id}
-          restOfVenue={restOfVenue}
+          bookings={bookings}
+          venueDetails={venueDetails}
+          setVenueDetails={setVenueDetails}
           setIsShowingDeleteView={setIsShowingDeleteView}
         />
       )}

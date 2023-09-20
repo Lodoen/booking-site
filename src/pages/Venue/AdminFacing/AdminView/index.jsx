@@ -5,10 +5,13 @@ import VenueDetails from "../../VenueDetails";
 import BookingManagement from "./BookingManagement";
 import * as S from "./index.styles";
 
-export default function AdminView({ id, restOfVenue, setIsShowingDeleteView }) {
-  const { bookings, ...details } = restOfVenue;
-
-  const [venueDetails, setVenueDetails] = useState(details);
+export default function AdminView({
+  id,
+  bookings,
+  venueDetails,
+  setVenueDetails,
+  setIsShowingDeleteView,
+}) {
   const [showFeedback, setShowFeedback] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [isShowingAdminView, setIsShowingAdminView] = useState(false);
@@ -24,7 +27,11 @@ export default function AdminView({ id, restOfVenue, setIsShowingDeleteView }) {
       if (fetchedUpdate.ok) {
         setIsDisabled(false);
         setShowFeedback("Venue updated!");
-        setVenueDetails(stringifiedUpdate);
+        setVenueDetails((prevDetails) => ({
+          ...stringifiedUpdate,
+          owner: prevDetails.owner,
+        }));
+        setIsShowingAdminView(false);
       } else {
         setIsDisabled(false);
         setShowFeedback(stringifiedUpdate.errors[0].message);
