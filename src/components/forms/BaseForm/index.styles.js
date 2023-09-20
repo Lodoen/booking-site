@@ -48,16 +48,6 @@ export const BaseForm = styled.form`
   button {
     padding: 10px 20px;
     font-weight: bold;
-    background-color: ${({ theme }) => theme.colors.primary};
-    border: 0;
-    color: #fff;
-    border-radius: 5px;
     margin: 0 auto;
-
-    &:hover {
-      cursor: pointer;
-      text-decoration: underline;
-      background-color: ${({ theme }) => theme.colors.secondary};
-    }
   }
 `;

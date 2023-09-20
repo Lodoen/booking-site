@@ -34,16 +34,7 @@ export const OrderWrapper = styled.section`
       box-sizing: border-box;
     }
     button {
-      background-color: ${({ theme }) => theme.colors.primary};
-      border: 0;
-      color: #fff;
       margin: 20px 0;
-
-      &:hover {
-        cursor: pointer;
-        text-decoration: underline;
-        background-color: ${({ theme }) => theme.colors.secondary};
-      }
     }
   }
 `;

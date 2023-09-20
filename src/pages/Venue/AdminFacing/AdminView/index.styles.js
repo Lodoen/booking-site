@@ -5,8 +5,11 @@ export const AdminView = styled.div`
     margin-bottom: 20px;
 
     .admin-controls {
-      button:first-of-type {
-        margin-right: 10px;
+      button {
+        padding: 10px;
+        &:first-of-type {
+          margin-right: 10px;
+        }
       }
     }
   }

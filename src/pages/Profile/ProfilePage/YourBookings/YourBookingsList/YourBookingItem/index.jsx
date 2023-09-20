@@ -105,7 +105,11 @@ export default function YourBookingItem({
                 {extractDate(dateFrom)} - {extractDate(dateTo)}
               </div>
             </Link>
-            <button disabled={isDisabled} onClick={() => cancelVenue(id)}>
+            <button
+              disabled={isDisabled}
+              onClick={() => cancelVenue(id)}
+              className="base-button"
+            >
               CANCEL
             </button>
             {showRemoveFeedback && <div>{showRemoveFeedback}</div>}

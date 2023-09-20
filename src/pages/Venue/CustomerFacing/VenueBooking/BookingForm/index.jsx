@@ -88,7 +88,9 @@ export default function BookingForm({ venueInfo }) {
               maxGuests ? maxGuests : 1
             }`}
           />
-          <button type="submit">Book venue</button>
+          <button type="submit" className="base-button">
+            Book venue
+          </button>
         </form>
         {feedback && <div>{feedback}</div>}
       </div>

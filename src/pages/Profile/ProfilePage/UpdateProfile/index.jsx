@@ -62,7 +62,9 @@ export default function UpdateProfile({
         <input {...register("avatar")} type="text" />
         <p>{errors.avatar?.message}</p>
       </div>
-      <button type="submit">Update</button>
+      <button type="submit" className="base-button">
+        Update
+      </button>
       {showFeedback ? <p>{showFeedback}</p> : null}
     </S.UpdateProfileForm>
   );

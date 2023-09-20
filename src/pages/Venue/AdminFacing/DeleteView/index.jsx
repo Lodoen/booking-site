@@ -36,12 +36,12 @@ export default function DeleteView({ id, setIsShowingDeleteView }) {
             Are you sure you want to delete the venue? This action is
             irreversible.
           </p>
-          <button onClick={() => removeVenue()} className="delete-view-button">
+          <button onClick={() => removeVenue()} className="base-button">
             I`m sure, delete the venue
           </button>
           <button
             onClick={() => setIsShowingDeleteView(false)}
-            className="delete-view-button"
+            className="base-button"
           >
             No, back to venue page
           </button>

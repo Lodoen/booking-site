@@ -50,10 +50,14 @@ export default function AdminView({
           <button
             onClick={() => setIsShowingDeleteView(true)}
             disabled={isDisabled}
+            className="base-button"
           >
             Delete venue
           </button>
-          <button onClick={() => setIsShowingAdminView(!isShowingAdminView)}>
+          <button
+            onClick={() => setIsShowingAdminView(!isShowingAdminView)}
+            className="base-button"
+          >
             Update venue
           </button>
         </div>

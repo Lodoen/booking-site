@@ -67,7 +67,9 @@ export default function LoginForm() {
 
       <Link to="/auth/register">Register &gt;&gt;</Link>
 
-      <button type="submit">Login</button>
+      <button type="submit" className="base-button">
+        Login
+      </button>
 
       {showFeedback ? <p>{showFeedback}</p> : null}
     </S.LoginForm>

@@ -364,7 +364,7 @@ export default function VenueManagementForm({
         </div>
       </section>
 
-      <button type="submit" disabled={isDisabled}>
+      <button type="submit" disabled={isDisabled} className="base-button">
         {venue ? "Update" : "Create"}
       </button>
     </S.VenueManagementForm>

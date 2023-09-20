@@ -14,6 +14,19 @@ export const Container = styled.div`
     border-radius: 10px;
   }
 
+  button.base-button {
+    background-color: ${({ theme }) => theme.colors.primary};
+    border: 0;
+    color: #fff;
+    border-radius: 5px;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+      background-color: ${({ theme }) => theme.colors.secondary};
+    }
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.screen.medium}) {
     .floating-box {
       margin-top: 25px;

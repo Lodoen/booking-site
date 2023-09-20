@@ -7,16 +7,10 @@ export const Calendar = styled.div`
     justify-content: center;
     margin-bottom: 10px;
 
-    button {
+    button.base-button {
       padding: 5px 10px;
-      background-color: ${({ theme }) => theme.colors.primary};
-      border: 0;
-      color: #fff;
-      border-radius: 5px;
-
       &:hover {
-        cursor: pointer;
-        background-color: ${({ theme }) => theme.colors.secondary};
+        text-decoration: none;
       }
     }
 

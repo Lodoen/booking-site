@@ -41,11 +41,15 @@ export default function Calendar() {
   return (
     <S.Calendar>
       <div className="calendar-controls">
-        <button onClick={handleMonthDecrease}>-</button>
+        <button onClick={handleMonthDecrease} className="base-button">
+          -
+        </button>
         <div>
           {monthNames[date.getMonth()]} {date.getFullYear()}
         </div>
-        <button onClick={handleMonthIncrease}>+</button>
+        <button onClick={handleMonthIncrease} className="base-button">
+          +
+        </button>
       </div>
 
       <CalendarTable weeks={listOfDates} />
