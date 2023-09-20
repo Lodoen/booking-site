@@ -10,6 +10,7 @@ import {
 import { GiSittingDog } from "react-icons/gi";
 import * as S from "./index.styles";
 import undefinedImg from "../../../assets/no-image-available.png";
+import useCheckUndefined from "../../../hooks/useCheckUndefined";
 
 export default function VenueItem({
   id,
@@ -21,6 +22,7 @@ export default function VenueItem({
   meta,
   location,
 }) {
+  const { checkUndefined } = useCheckUndefined();
   try {
     return (
       <S.VenueItem>
@@ -32,7 +34,7 @@ export default function VenueItem({
             />
           </figure>
           <div className="title-and-rating">
-            <h2>{name}</h2>
+            <h2>{checkUndefined(name)}</h2>
             <div className="detail">
               <figure>
                 <BsFillStarFill />
@@ -44,14 +46,14 @@ export default function VenueItem({
             <figure>
               <BsPinMap />
             </figure>
-            {location.city}, {location.country}
+            {checkUndefined(location.city)}, {checkUndefined(location.country)}
           </div>
           <div className="detail">
             <figure>
               <BsPerson />
             </figure>
 
-            {maxGuests}
+            {checkUndefined(maxGuests)}
           </div>
           <div className="detail">
             <figure>{meta.wifi && <BsWifi title="Wifi included" />}</figure>
@@ -67,7 +69,7 @@ export default function VenueItem({
               {meta.pets && <GiSittingDog title="Pets allowed" />}
             </figure>
           </div>
-          <div className="detail">{price}kr per night</div>
+          <div className="detail">{checkUndefined(price)}kr per night</div>
         </Link>
       </S.VenueItem>
     );
