@@ -14,7 +14,7 @@ const schema = yup
     price: yup
       .number()
       .typeError("Price must be a valid number")
-      .min(0, "Enter a valid price")
+      .min(1, "Enter a valid price")
       .required("Please enter a rating"),
     maxGuests: yup
       .number()
@@ -166,6 +166,7 @@ export default function VenueManagementForm({
                   type="number"
                   defaultValue={details.rating}
                   disabled={isDisabled}
+                  min="1"
                 />
                 <p>{errors.price?.message}</p>
               </div>
@@ -177,6 +178,8 @@ export default function VenueManagementForm({
                   type="number"
                   defaultValue={details.maxGuests}
                   disabled={isDisabled}
+                  min="1"
+                  max="100"
                 />
                 <p>{errors.maxGuests?.message}</p>
               </div>
@@ -188,6 +191,7 @@ export default function VenueManagementForm({
                   type="number"
                   defaultValue={details.rating}
                   disabled={isDisabled}
+                  min="0"
                 />
                 <p>{errors.rating?.message}</p>
               </div>

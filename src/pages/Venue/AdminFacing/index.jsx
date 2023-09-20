@@ -28,6 +28,7 @@ export default function AdminFacing({ venue }) {
         setShowFeedback("Venue updated!");
         setVenueDetails(stringifiedUpdate);
       } else {
+        setIsDisabled(false);
         setShowFeedback(stringifiedUpdate.errors[0].message);
       }
     } catch (error) {
