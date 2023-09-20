@@ -4,6 +4,7 @@ export const Dropdown = styled.div`
   position: absolute;
   width: 100%;
   right: 0;
+  z-index: 999;
 
   .dropdown {
     background-color: #fff;
