@@ -11,7 +11,7 @@ import { GiSittingDog } from "react-icons/gi";
 import * as S from "./index.styles";
 import MediaShowcase from "./MediaShowcase";
 
-export default function VenueDetails({ venue }) {
+export default function VenueDetails({ venue, isCustomerView = true }) {
   if (!venue) {
     return <div>Found no venue</div>;
   }
@@ -24,7 +24,7 @@ export default function VenueDetails({ venue }) {
       <div className="image-details-wrapper">
         <MediaShowcase media={media ? media : []} />
         <section>
-          <h2>{venue.name}</h2>
+          {isCustomerView ? <h1>{venue.name}</h1> : <h2>{venue.name}</h2>}
 
           <div className="details-amenities-wrapper">
             <section>

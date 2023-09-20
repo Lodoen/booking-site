@@ -110,7 +110,7 @@ export default function AdminFacing({ venue }) {
               isDisabled={isDisabled}
             />
           ) : (
-            <VenueDetails venue={venueDetails} />
+            <VenueDetails venue={venueDetails} isCustomerView={false} />
           )}
           {showFeedback && <div>{showFeedback}</div>}
           <BookingManagement bookings={bookings} />
