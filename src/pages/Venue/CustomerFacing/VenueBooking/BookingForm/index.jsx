@@ -57,7 +57,15 @@ export default function BookingForm({ venueInfo }) {
         setFeedback("Encountered error on booking");
       }
     } else {
-      setFeedback("Select two available dates, and a number of guests.");
+      if (!venueIsAvailable) {
+        setFeedback(
+          "One or more days within your chosen date range are unavailable due to prior bookings. Please select a different date range.",
+        );
+      } else {
+        setFeedback(
+          "Select two available dates, and a valid number of guests.",
+        );
+      }
     }
   };
 
