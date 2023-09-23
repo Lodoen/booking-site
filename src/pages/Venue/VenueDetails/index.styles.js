@@ -7,8 +7,12 @@ export const VenueDetails = styled(VenueShowcaseWrapper)`
     font-weight: normal;
   }
 
+  h1 {
+    font-size: 1.5rem;
+  }
+
   h2 {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
   }
 
   .image-details-wrapper h2 {
@@ -17,6 +21,14 @@ export const VenueDetails = styled(VenueShowcaseWrapper)`
 
   .details-amenities-wrapper > section {
     margin: 30px 0;
+
+    span {
+      word-break: break-all;
+    }
+
+    svg {
+      margin-right: 5px;
+    }
   }
 
   @media screen and (min-width: ${({ theme }) => theme.screen.max}) {
