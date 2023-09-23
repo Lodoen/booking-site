@@ -8,6 +8,10 @@ export const VenueBooking = styled.section`
     font-weight: normal;
   }
 
+  h2 {
+    font-size: 1.1rem;
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.screen.max}) {
     display: grid;
     gap: 0 75px;
