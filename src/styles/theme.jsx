@@ -2,10 +2,10 @@ import { ThemeProvider } from "styled-components";
 
 const theme = {
   screen: {
+    small: "300px",
+    medium: "450px",
+    large: "600px",
     max: "800px",
-    "extra-small": "300px",
-    small: "450px",
-    medium: "600px",
   },
   colors: {
     primary: "var(--color-primary)",
