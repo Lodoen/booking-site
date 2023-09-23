@@ -12,9 +12,14 @@ export const Header = styled.header`
     padding: 15px;
     color: #fff;
 
+    & > a,
     figure {
-      margin: 0;
       display: flex;
+    }
+
+    figure {
+      width: 100px;
+      margin: 0;
       align-items: center;
       justify-content: center;
     }
@@ -31,6 +36,10 @@ export const Header = styled.header`
   @media screen and (min-width: ${({ theme }) => theme.screen.large}) {
     .header-content {
       grid-template-columns: 150px auto;
+
+      figure {
+        width: 150px;
+      }
     }
   }
 `;
