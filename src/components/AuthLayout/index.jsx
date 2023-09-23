@@ -6,7 +6,7 @@ import * as S from "./index.styles";
 export default function AuthLayout() {
   return (
     <S.Container>
-      <div>
+      <div className="floating-box-wrapper">
         <div className="floating-box">
           <Header />
           <main>

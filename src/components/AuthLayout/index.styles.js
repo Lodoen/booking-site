@@ -4,14 +4,10 @@ export const Container = styled.div`
   display: grid;
   grid-template-rows: 1fr auto;
   min-height: 100vh;
-  background-color: ${({ theme }) => theme.colors.secondary};
 
   .floating-box {
     background-color: #fff;
-    margin: 0 auto;
-    max-width: ${({ theme }) => theme.screen.medium};
     padding: 30px;
-    border-radius: 10px;
   }
 
   button.base-button {
@@ -27,9 +23,19 @@ export const Container = styled.div`
     }
   }
 
-  @media screen and (min-width: ${({ theme }) => theme.screen.large}) {
+  @media screen and (min-width: ${({ theme }) => theme.screen.medium}) {
+    background-color: ${({ theme }) => theme.colors.secondary};
+
+    .floating-box-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .floating-box {
-      margin-top: 25px;
+      width: 300px;
+      border-radius: 10px;
+      padding: 50px;
     }
   }
 `;
