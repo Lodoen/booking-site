@@ -58,14 +58,14 @@ export const MediaShowcase = styled.div`
     }
   }
 
-  @media screen and (min-width: ${({ theme }) => theme.screen["extra-small"]}) {
+  @media screen and (min-width: ${({ theme }) => theme.screen.small}) {
     .basic-carousel .media-wrapper,
     .modal-carousel .media-wrapper {
       width: 250px;
       height: 250px;
     }
   }
-  @media screen and (min-width: ${({ theme }) => theme.screen.small}) {
+  @media screen and (min-width: ${({ theme }) => theme.screen.medium}) {
     .basic-carousel .media-wrapper {
       width: 300px;
       height: 300px;
@@ -76,7 +76,7 @@ export const MediaShowcase = styled.div`
       height: 400px;
     }
   }
-  @media screen and (min-width: ${({ theme }) => theme.screen.medium}) {
+  @media screen and (min-width: ${({ theme }) => theme.screen.large}) {
     .basic-carousel .media-wrapper {
       width: 450px;
       height: 450px;

@@ -59,7 +59,7 @@ export const Nav = styled.nav`
     }
   }
 
-  @media screen and (min-width: ${({ theme }) => theme.screen.medium}) {
+  @media screen and (min-width: ${({ theme }) => theme.screen.large}) {
     ul {
       gap: 10px;
 

@@ -14,7 +14,7 @@ export const AdminView = styled.div`
     }
   }
 
-  @media screen and (min-width: ${({ theme }) => theme.screen.small}) {
+  @media screen and (min-width: ${({ theme }) => theme.screen.medium}) {
     .admin-controls-wrapper {
       display: flex;
       align-items: center;

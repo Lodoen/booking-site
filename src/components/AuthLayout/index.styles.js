@@ -9,7 +9,7 @@ export const Container = styled.div`
   .floating-box {
     background-color: #fff;
     margin: 0 auto;
-    max-width: ${({ theme }) => theme.screen.small};
+    max-width: ${({ theme }) => theme.screen.medium};
     padding: 30px;
     border-radius: 10px;
   }
@@ -27,7 +27,7 @@ export const Container = styled.div`
     }
   }
 
-  @media screen and (min-width: ${({ theme }) => theme.screen.medium}) {
+  @media screen and (min-width: ${({ theme }) => theme.screen.large}) {
     .floating-box {
       margin-top: 25px;
     }

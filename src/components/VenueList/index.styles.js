@@ -6,7 +6,7 @@ export const VenueList = styled.div`
   column-gap: 1rem;
   padding: 20px;
 
-  @media screen and (min-width: ${({ theme }) => theme.screen.medium}) {
+  @media screen and (min-width: ${({ theme }) => theme.screen.large}) {
     padding: 0;
     grid-template-columns: repeat(2, 1fr);
   }

@@ -57,15 +57,15 @@ export const VenueItem = styled.div`
   }
 
   @media screen and (min-width: 400px) {
-    width: ${({ theme }) => theme.screen["extra-small"]};
+    width: ${({ theme }) => theme.screen.small};
 
     .venue-showcase {
-      height: ${({ theme }) => theme.screen["extra-small"]};
-      width: ${({ theme }) => theme.screen["extra-small"]};
+      height: ${({ theme }) => theme.screen.small};
+      width: ${({ theme }) => theme.screen.small};
     }
   }
 
-  @media screen and (min-width: ${({ theme }) => theme.screen.medium}) {
+  @media screen and (min-width: ${({ theme }) => theme.screen.large}) {
     width: 225px;
 
     .venue-showcase {
@@ -75,11 +75,11 @@ export const VenueItem = styled.div`
   }
 
   @media screen and (min-width: 750px) {
-    width: ${({ theme }) => theme.screen["extra-small"]};
+    width: ${({ theme }) => theme.screen.small};
 
     .venue-showcase {
-      height: ${({ theme }) => theme.screen["extra-small"]};
-      width: ${({ theme }) => theme.screen["extra-small"]};
+      height: ${({ theme }) => theme.screen.small};
+      width: ${({ theme }) => theme.screen.small};
     }
   }
 

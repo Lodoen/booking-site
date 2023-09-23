@@ -54,7 +54,7 @@ export const FilterWrapper = styled.div`
     }
   }
 
-  @media screen and (min-width: ${({ theme }) => theme.screen.small}) {
+  @media screen and (min-width: ${({ theme }) => theme.screen.medium}) {
     .filter-button {
       margin-top: 0;
       figure {
@@ -63,7 +63,7 @@ export const FilterWrapper = styled.div`
     }
   }
 
-  @media screen and (min-width: ${({ theme }) => theme.screen.medium}) {
+  @media screen and (min-width: ${({ theme }) => theme.screen.large}) {
     .floating-form-wrapper {
       position: relative;
       width: auto;

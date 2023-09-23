@@ -14,7 +14,7 @@ export const ProfilePage = styled.section`
     }
 
     &.profile-details {
-      max-width: ${({ theme }) => theme.screen.small};
+      max-width: ${({ theme }) => theme.screen.medium};
       margin: 0 auto;
       padding-bottom: 30px;
 
@@ -72,7 +72,7 @@ export const ProfilePage = styled.section`
     }
   }
 
-  @media screen and (min-width: ${({ theme }) => theme.screen.medium}) {
+  @media screen and (min-width: ${({ theme }) => theme.screen.large}) {
     .profile-details {
       display: grid;
       grid-template-columns: repeat(2, 1fr);

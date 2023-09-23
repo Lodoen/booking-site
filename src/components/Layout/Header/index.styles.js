@@ -28,7 +28,7 @@ export const Header = styled.header`
     }
   }
 
-  @media screen and (min-width: ${({ theme }) => theme.screen.medium}) {
+  @media screen and (min-width: ${({ theme }) => theme.screen.large}) {
     .header-content {
       grid-template-columns: 150px auto;
     }

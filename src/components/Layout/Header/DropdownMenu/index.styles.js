@@ -64,7 +64,7 @@ export const Dropdown = styled.div`
     }
   }
 
-  @media screen and (min-width: ${({ theme }) => theme.screen.medium}) {
+  @media screen and (min-width: ${({ theme }) => theme.screen.large}) {
     .dropdown {
       width: 50%;
       border-radius: 10px;

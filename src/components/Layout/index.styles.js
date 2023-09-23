@@ -24,7 +24,7 @@ export const Container = styled.div`
     }
   }
 
-  @media screen and (min-width: ${({ theme }) => theme.screen.small}) {
+  @media screen and (min-width: ${({ theme }) => theme.screen.medium}) {
     main > section {
       padding: 10px 30px;
     }
