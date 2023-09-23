@@ -45,96 +45,103 @@ export default function FilterForm({ setFilter, filter, setIsFilterOpen }) {
 
   return (
     <S.FilterForm onSubmit={handleSubmit}>
-      <div className="heading-and-close">
-        <button onClick={() => setIsFilterOpen(false)} className="exit-button">
-          <figure>
-            <BsXLg />
-          </figure>
-        </button>
-        <span>
-          <h2>Filters</h2>
-        </span>
-      </div>
+      <div>
+        <div className="heading-and-close">
+          <button
+            onClick={() => setIsFilterOpen(false)}
+            className="exit-button"
+          >
+            <figure>
+              <BsXLg />
+            </figure>
+          </button>
+          <span>
+            <h2>Filters</h2>
+          </span>
+        </div>
 
-      <div className="input-group form-content">
-        <h3>Price per night (kr)</h3>
-        <label htmlFor="min">Min:</label>
-        <input
-          type="number"
-          id="min-price"
-          name="min-price"
-          placeholder="0"
-          min="0"
-          defaultValue={price && price.min ? price.min : 0}
-        />
-        <label htmlFor="max">Max:</label>
-        <input
-          type="number"
-          id="max-price"
-          name="max-price"
-          placeholder="10 000"
-          min="0"
-          defaultValue={price && price.max ? price.max : 0}
-        />
+        <div className="input-group form-content">
+          <h3>Price per night (kr)</h3>
+          <label htmlFor="min">Min:</label>
+          <input
+            type="number"
+            id="min-price"
+            name="min-price"
+            placeholder="0"
+            min="0"
+            defaultValue={price && price.min ? price.min : 0}
+          />
+          <label htmlFor="max">Max:</label>
+          <input
+            type="number"
+            id="max-price"
+            name="max-price"
+            placeholder="10 000"
+            min="0"
+            defaultValue={price && price.max ? price.max : 0}
+          />
+        </div>
+        <div className="input-group form-content">
+          <h3>Min guests allowed</h3>
+          <label htmlFor="guests">Guests:</label>
+          <input
+            type="number"
+            id="guests"
+            name="guests"
+            placeholder="0"
+            min="0"
+            defaultValue={guests ? guests : 0}
+          />
+        </div>
+        <div className="form-content">
+          <h3>Amenities</h3>
+          <div className="checkbox-group">
+            <input
+              type="checkbox"
+              name="wifi"
+              id="wifi"
+              defaultChecked={amenities && amenities.wifi ? true : false}
+            />
+            <label htmlFor="wifi">Wifi included</label>
+          </div>
+          <div className="checkbox-group">
+            <input
+              type="checkbox"
+              name="parking"
+              id="parking"
+              defaultChecked={amenities && amenities.parking ? true : false}
+            />
+            <label htmlFor="parking">Parking included</label>
+          </div>
+          <div className="checkbox-group">
+            <input
+              type="checkbox"
+              name="breakfast"
+              id="breakfast"
+              defaultChecked={amenities && amenities.breakfast ? true : false}
+            />
+            <label htmlFor="breakfast">Breakfast included</label>
+          </div>
+          <div className="checkbox-group">
+            <input
+              type="checkbox"
+              name="pets"
+              id="pets"
+              defaultChecked={amenities && amenities.pets ? true : false}
+            />
+            <label htmlFor="pets">Pets allowed</label>
+          </div>
+        </div>
       </div>
-      <div className="input-group form-content">
-        <h3>Min guests allowed</h3>
-        <label htmlFor="guests">Guests:</label>
-        <input
-          type="number"
-          id="guests"
-          name="guests"
-          placeholder="0"
-          min="0"
-          defaultValue={guests ? guests : 0}
-        />
-      </div>
-      <div className="form-content">
-        <h3>Amenities</h3>
-        <div className="checkbox-group">
-          <input
-            type="checkbox"
-            name="wifi"
-            id="wifi"
-            defaultChecked={amenities && amenities.wifi ? true : false}
-          />
-          <label htmlFor="wifi">Wifi included</label>
+      <div className="button-wrapper">
+        <div className="form-content">
+          <button onClick={handleClear} className="clear-button">
+            Clear filters
+          </button>
+          <button type="submit" className="base-button">
+            Apply filters
+          </button>
         </div>
-        <div className="checkbox-group">
-          <input
-            type="checkbox"
-            name="parking"
-            id="parking"
-            defaultChecked={amenities && amenities.parking ? true : false}
-          />
-          <label htmlFor="parking">Parking included</label>
-        </div>
-        <div className="checkbox-group">
-          <input
-            type="checkbox"
-            name="breakfast"
-            id="breakfast"
-            defaultChecked={amenities && amenities.breakfast ? true : false}
-          />
-          <label htmlFor="breakfast">Breakfast included</label>
-        </div>
-        <div className="checkbox-group">
-          <input
-            type="checkbox"
-            name="pets"
-            id="pets"
-            defaultChecked={amenities && amenities.pets ? true : false}
-          />
-          <label htmlFor="pets">Pets allowed</label>
-        </div>
-      </div>
-      <div className="form-content">
-        <button onClick={handleClear} className="clear-button">
-          Clear filters
-        </button>
-        <button type="submit" className="base-button">
-          Apply filters
-        </button>
       </div>
     </S.FilterForm>
   );

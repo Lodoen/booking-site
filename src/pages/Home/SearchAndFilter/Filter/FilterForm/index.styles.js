@@ -2,7 +2,11 @@ import styled from "styled-components";
 import { BaseForm } from "../../../../../components/forms/BaseForm/index.styles";
 
 export const FilterForm = styled(BaseForm)`
+  height: 100%;
+  box-sizing: border-box;
+  display: grid;
   padding: 20px 20px 30px 20px;
+
   .heading-and-close {
     position: relative;
     border-bottom: 1px solid #272727;
@@ -44,14 +48,17 @@ export const FilterForm = styled(BaseForm)`
     }
   }
 
-  button.clear-button {
-    background: none;
-    border: none;
-    font-weight: normal;
-    margin-bottom: 10px;
-    &:hover {
-      cursor: pointer;
-      text-decoration: underline;
+  .button-wrapper {
+    align-self: end;
+    button.clear-button {
+      background: none;
+      border: none;
+      font-weight: normal;
+      margin-bottom: 10px;
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
     }
   }
 
