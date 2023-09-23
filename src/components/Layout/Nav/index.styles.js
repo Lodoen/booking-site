@@ -35,7 +35,6 @@ export const Nav = styled.nav`
   .dropdown-menu,
   .navigation-element {
     background-color: ${({ theme }) => theme.colors.primary};
-
     border-radius: 5px;
   }
 
@@ -57,6 +56,10 @@ export const Nav = styled.nav`
         height: 100%;
       }
     }
+  }
+
+  .dropdown-menu:hover {
+    cursor: pointer;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.screen.large}) {
