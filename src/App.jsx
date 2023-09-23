@@ -6,7 +6,6 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Venue from "./pages/Venue";
-import Manage from "./pages/Manage";
 import Create from "./pages/Create";
 import Profile from "./pages/Profile";
 import RouteNotFound from "./pages/RouteNotFound";
@@ -23,10 +22,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="venue/:id">
-              <Route index element={<Venue />} />
-              <Route path="manage" element={<Manage />} />
-            </Route>
+            <Route path="venue/:id" element={<Venue />} />
             <Route path="create" element={<Create />} />
             <Route path="profile" element={<Profile />} />
             <Route path="*" element={<RouteNotFound />} />
