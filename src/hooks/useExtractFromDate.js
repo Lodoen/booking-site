@@ -25,7 +25,7 @@ export default function useExtractFromDate() {
     try {
       const splitDateElements = string.split("T")[0].split("-");
       return `${splitDateElements[2]} ${
-        monthShortNames[parseInt(splitDateElements[1])]
+        monthShortNames[parseInt(splitDateElements[1]) - 1]
       } ${splitDateElements[0]}`;
     } catch (error) {
       return string;
