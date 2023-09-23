@@ -11,4 +11,14 @@ export const LoginForm = styled(BaseForm)`
       text-decoration: underline;
     }
   }
+
+  button {
+    width: 100%;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.screen.medium}) {
+    button {
+      width: auto;
+    }
+  }
 `;
