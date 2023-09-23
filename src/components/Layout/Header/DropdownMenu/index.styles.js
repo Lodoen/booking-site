@@ -6,19 +6,28 @@ export const Dropdown = styled.div`
   right: 0;
   z-index: 999;
 
+  .dropdown,
+  .dropdown button {
+    background-color: ${({ theme }) => theme.colors.secondary};
+    color: #fff;
+  }
+
   .dropdown {
-    background-color: #fff;
-    border: 1px solid #000;
     padding: 10px 20px;
+    word-break: break-all;
 
     .dropdown-header {
       font-weight: bold;
     }
 
     & > div {
-      border-bottom: 1px solid #000;
+      border-bottom: 1px solid #fff;
       margin-top: 20px;
       padding-bottom: 20px;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
 
       &:last-of-type {
         border: none;
@@ -54,7 +63,6 @@ export const Dropdown = styled.div`
       margin: 10px 0;
       padding: 10px 10px 10px 0;
       border: none;
-      background-color: white;
       font-size: 1rem;
       cursor: pointer;
 
@@ -65,10 +73,24 @@ export const Dropdown = styled.div`
   }
 
   @media screen and (min-width: ${({ theme }) => theme.screen.large}) {
+    max-width: ${({ theme }) => theme.screen.max};
+    left: 50%;
+    transform: translateX(-50%);
     .dropdown {
       width: 50%;
-      border-radius: 10px;
+      max-width: 250px;
+      border-radius: 0 0 0 10px;
       margin-left: auto;
+
+      & > div:first-of-type {
+        margin-top: 20px;
+      }
+    }
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.screen.max}) {
+    .dropdown {
+      border-radius: 0 0 10px 10px;
     }
   }
 `;
