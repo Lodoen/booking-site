@@ -4,19 +4,19 @@ export const OrderWrapper = styled.section`
   h3 {
     margin-top: 0;
   }
-  & > div,
+
   form input,
   form button {
-    border-radius: 10px;
+    border-radius: 5px;
   }
 
   & > div,
   form input {
     border: 1px solid #000;
-    border-radius: 10px;
   }
 
   & > div {
+    border-radius: 10px;
     padding: 10px 20px;
   }
 
