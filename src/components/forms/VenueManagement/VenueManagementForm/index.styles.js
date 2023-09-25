@@ -12,6 +12,7 @@ export const VenueManagementForm = styled(BaseForm)`
     box-sizing: border-box;
     padding: 5px 10px;
     border: 1px solid #000;
+    min-height: 125px;
   }
 
   h2,
@@ -24,10 +25,8 @@ export const VenueManagementForm = styled(BaseForm)`
   }
 
   @media screen and (min-width: ${({ theme }) => theme.screen.max}) {
-    .input-group {
-      textarea {
-        min-height: 270px;
-      }
+    .input-group textarea {
+      min-height: 270px;
     }
   }
 `;

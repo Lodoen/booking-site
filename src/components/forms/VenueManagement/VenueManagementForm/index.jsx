@@ -192,6 +192,7 @@ export default function VenueManagementForm({
                   defaultValue={details.rating}
                   disabled={isDisabled}
                   min="0"
+                  max="5"
                 />
                 <p>{errors.rating?.message}</p>
               </div>
