@@ -1,12 +1,14 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import useLocalStorage from "../../../hooks/useLocalStorage";
-import { useContext, useState } from "react";
 import { UserContext } from "../../../context/UserContext";
 import * as S from "./index.styles";
+import useFeedback from "../../../hooks/useFeedback";
+import Alert from "../../../components/Alert";
 
 const schema = yup
   .object({
@@ -38,7 +40,7 @@ export default function RegisterForm() {
   const { save } = useLocalStorage("user");
   const { setUser } = useContext(UserContext);
 
-  const [showFeedback, setShowFeedback] = useState(false);
+  const { feedbackMessage, feedbackType, setFeedback } = useFeedback();
 
   const {
     register,
@@ -50,11 +52,11 @@ export default function RegisterForm() {
 
   async function onSubmit(data) {
     try {
-      setShowFeedback("Loading register ...");
+      setFeedback("Loading register...", "info");
       const { fetchedRegister, stringifiedRegister } = await registerUser(data);
 
       if (fetchedRegister.ok) {
-        setShowFeedback("Loading login ...");
+        setFeedback("Loading login...", "info");
         const { fetchedLogin, stringifiedLogin } = await login(data);
 
         if (fetchedLogin.ok) {
@@ -62,13 +64,13 @@ export default function RegisterForm() {
           setUser(stringifiedLogin);
           navigate("/profile");
         } else {
-          setShowFeedback(stringifiedLogin.errors[0].message);
+          setFeedback(stringifiedLogin.errors[0].message, "error");
         }
       } else {
-        setShowFeedback(stringifiedRegister.errors[0].message);
+        setFeedback(stringifiedRegister.errors[0].message, "error");
       }
     } catch (error) {
-      setShowFeedback("Encountered error on register");
+      setFeedback("Encountered error on register.", "error");
     }
   }
 
@@ -115,7 +117,12 @@ export default function RegisterForm() {
       <button type="submit" className="base-button">
         Register
       </button>
-      {showFeedback ? <p>{showFeedback}</p> : null}
+
+      {feedbackMessage && (
+        <Alert status={feedbackType}>
+          <span>{feedbackMessage}</span>
+        </Alert>
+      )}
     </S.RegisterForm>
   );
 }
