@@ -1,18 +1,20 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import VenueManagement from "../../components/forms/VenueManagement";
 import useVenue from "../../hooks/useVenue";
+import Alert from "../../components/Alert";
+import useFeedback from "../../hooks/useFeedback";
 
 export default function Create() {
   const { user } = useContext(UserContext);
   const { create } = useVenue();
   const navigate = useNavigate();
-  const [feedback, setFeedback] = useState(undefined);
+  const { feedbackMessage, feedbackType, setFeedback } = useFeedback();
 
   const createVenue = async (body) => {
     try {
-      setFeedback("Loading ...");
+      setFeedback("Loading ...", "info");
       const { fetchedCreate, stringifiedCreate } = await create(body);
 
       if (fetchedCreate.ok) {
@@ -21,17 +23,22 @@ export default function Create() {
           navigate(`/venue/${stringifiedCreate.id}`);
         }, 1500);
       } else {
-        setFeedback(stringifiedCreate.errors[0].message);
+        setFeedback(stringifiedCreate.errors[0].message, "error");
       }
     } catch (error) {
       console.log(error);
-      setFeedback("Encountered error on update");
+      setFeedback("Encountered error on create", "error");
     }
   };
 
   return user && user.venueManager ? (
     <section>
-      <VenueManagement submitFunction={createVenue} /> <p>{feedback}</p>
+      <VenueManagement submitFunction={createVenue} />
+      {feedbackMessage && (
+        <Alert status={feedbackType}>
+          <span>{feedbackMessage}</span>
+        </Alert>
+      )}
     </section>
   ) : (
     <div>You have to be a venue manager to create venues</div>
