@@ -4,16 +4,18 @@ import useBooking from "../../../../../hooks/useBooking";
 import useExtractFromDate from "../../../../../hooks/useExtractFromDate";
 import useBookingForm from "./useBookingForm";
 import * as S from "./index.styles";
+import useFeedback from "../../../../../hooks/useFeedback";
+import Alert from "../../../../../components/Alert";
 
 export default function BookingForm({ venueInfo }) {
   const { extractDate } = useExtractFromDate();
   const { checkAvailableDates } = useBookingForm();
   const { create } = useBooking();
+  const { feedbackMessage, feedbackType, setFeedback } = useFeedback();
 
   const { yourBooking, setYourBooking, currentBookings, setCurrentBookings } =
     useContext(BookingContext);
   const [guests, setGuests] = useState(1);
-  const [feedback, setFeedback] = useState(undefined);
   const { id, maxGuests } = venueInfo;
 
   const handleGuestChange = (event) => setGuests(event.target.value);
@@ -28,8 +30,6 @@ export default function BookingForm({ venueInfo }) {
     const venueIsAvailable =
       start && end ? checkAvailableDates(start, end, currentBookings) : false;
 
-    setFeedback("Loading...");
-
     if (start && end && guestsIsValid && venueIsAvailable) {
       const body = {
         dateFrom: yourBooking.start,
@@ -39,7 +39,7 @@ export default function BookingForm({ venueInfo }) {
       };
 
       try {
-        setFeedback("Loading ...");
+        setFeedback("Loading ...", "info");
         const { fetchedUpdate, stringifiedUpdate } = await create(body);
 
         if (fetchedUpdate.ok) {
@@ -54,16 +54,18 @@ export default function BookingForm({ venueInfo }) {
           setFeedback(stringifiedUpdate.errors[0].message);
         }
       } catch (error) {
-        setFeedback("Encountered error on booking");
+        setFeedback("Encountered error on booking.", "error");
       }
     } else {
       if (!venueIsAvailable) {
         setFeedback(
           "One or more days within your chosen date range are unavailable due to prior bookings. Please select a different date range.",
+          "warning",
         );
       } else {
         setFeedback(
           "Select two available dates, and a valid number of guests.",
+          "warning",
         );
       }
     }
@@ -100,7 +102,11 @@ export default function BookingForm({ venueInfo }) {
             Book venue
           </button>
         </form>
-        {feedback && <div>{feedback}</div>}
+        {feedbackMessage && (
+          <Alert status={feedbackType}>
+            <span>{feedbackMessage}</span>
+          </Alert>
+        )}
       </div>
     </S.OrderWrapper>
   );
