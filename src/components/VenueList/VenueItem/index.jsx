@@ -55,19 +55,27 @@ export default function VenueItem({
 
             {checkUndefined(maxGuests)}
           </div>
-          <div className="detail">
-            <figure>{meta.wifi && <BsWifi title="Wifi included" />}</figure>
-            <figure>
-              {meta.parking && <BsFillCarFrontFill title="Parking included" />}
-            </figure>
-            <figure>
-              {meta.breakfast && (
+          <div className="detail amenities">
+            {meta.wifi && (
+              <figure>
+                <BsWifi title="Wifi included" />
+              </figure>
+            )}
+            {meta.parking && (
+              <figure>
+                <BsFillCarFrontFill title="Parking included" />
+              </figure>
+            )}
+            {meta.breakfast && (
+              <figure>
                 <BsFillCupHotFill title="Breakfast included" />
-              )}
-            </figure>
-            <figure>
-              {meta.pets && <GiSittingDog title="Pets allowed" />}
-            </figure>
+              </figure>
+            )}
+            {meta.pets && (
+              <figure>
+                <GiSittingDog title="Pets allowed" />
+              </figure>
+            )}
           </div>
           <div className="detail">{checkUndefined(price)}kr per night</div>
         </Link>

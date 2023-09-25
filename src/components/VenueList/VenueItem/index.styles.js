@@ -45,13 +45,24 @@ export const VenueItem = styled.div`
   .detail {
     margin: 10px 0;
 
+    figure,
+    figure svg {
+      width: 20px;
+      height: 20px;
+    }
+
     figure {
       display: inline;
+      margin-right: 5px;
+    }
 
-      svg {
-        margin-right: 5px;
-        width: 20px;
-        height: 20px;
+    &.amenities {
+      figure {
+        margin: 0 6px;
+
+        &:first-of-type {
+          margin-left: 0;
+        }
       }
     }
   }
