@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-
 import VenueList from "../../components/VenueList";
 import useApi from "../../hooks/useApi";
 import SearchAndFilter from "./SearchAndFilter";
+import Loading from "../../components/Loading";
 
 const baseFilter = {
   search: undefined,
@@ -82,11 +82,7 @@ export default function Home() {
   }, [data, filter]);
 
   if (isLoading) {
-    return (
-      <div>
-        <h1>Loading venues</h1>
-      </div>
-    );
+    return <Loading text="venues" />;
   }
 
   if (isError) {
