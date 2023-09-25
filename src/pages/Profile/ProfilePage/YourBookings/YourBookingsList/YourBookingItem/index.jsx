@@ -14,6 +14,8 @@ import useExtractFromDate from "../../../../../../hooks/useExtractFromDate";
 import useBooking from "../../../../../../hooks/useBooking";
 import * as S from "./index.styles";
 import undefinedImg from "../../../../../../assets/no-image-available.png";
+import Alert from "../../../../../../components/Alert";
+import useFeedback from "../../../../../../hooks/useFeedback";
 
 export default function YourBookingItem({
   id,
@@ -26,23 +28,25 @@ export default function YourBookingItem({
   const { remove } = useBooking();
   const [isCancelled, setIsCancelled] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
-  const [showRemoveFeedback, setShowRemoveFeedback] = useState(false);
+  const { feedbackMessage, feedbackType, setFeedback } = useFeedback();
   const { name, media, price, rating, meta, location } = venue;
 
   const cancelVenue = async (id) => {
     try {
       setIsDisabled(true);
-      setShowRemoveFeedback("Loading ...");
+      setFeedback("Loading ...", "info");
       const { fetchedRemove } = await remove(id);
 
       if (fetchedRemove.ok) {
         setIsCancelled(true);
       } else {
-        setShowRemoveFeedback("We encountered error on remove");
+        setFeedback(
+          "Something went wrong when trying to cancel your booking, try again later.",
+          "error",
+        );
       }
     } catch (error) {
-      console.log(error);
-      setShowRemoveFeedback("Encountered error on remove");
+      setFeedback("Encountered error on cancel.", "error");
     }
   };
 
@@ -50,7 +54,9 @@ export default function YourBookingItem({
     return (
       <div>
         {isCancelled ? (
-          <p>Cancelled!</p>
+          <Alert>
+            <span>Booking at {name} has been cancelled.</span>
+          </Alert>
         ) : (
           <S.YourBookingItem>
             <Link to={`/venue/${venue.id}`}>
@@ -112,7 +118,11 @@ export default function YourBookingItem({
             >
               CANCEL
             </button>
-            {showRemoveFeedback && <div>{showRemoveFeedback}</div>}
+            {feedbackMessage && (
+              <Alert status={feedbackType}>
+                <span>{feedbackMessage}</span>
+              </Alert>
+            )}
           </S.YourBookingItem>
         )}
       </div>
