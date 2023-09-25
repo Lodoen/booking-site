@@ -31,6 +31,7 @@ export default function App() {
             <Route index element={<Navigate to="/auth/login" replace />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
+            <Route path="*" element={<RouteNotFound />} />
           </Route>
         </Routes>
       </UserContext.Provider>
