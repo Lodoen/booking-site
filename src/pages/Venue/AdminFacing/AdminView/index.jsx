@@ -47,18 +47,20 @@ export default function AdminView({
       <div className="admin-controls-wrapper">
         <h1>Manage venue</h1>
         <div className="admin-controls">
-          <button
-            onClick={() => setIsShowingDeleteView(true)}
-            disabled={isDisabled}
-            className="base-button"
-          >
-            Delete venue
-          </button>
+          {!isShowingAdminView && (
+            <button
+              onClick={() => setIsShowingDeleteView(true)}
+              disabled={isDisabled}
+              className="base-button"
+            >
+              Delete venue
+            </button>
+          )}
           <button
             onClick={() => setIsShowingAdminView(!isShowingAdminView)}
             className="base-button"
           >
-            Update venue
+            {isShowingAdminView ? "Cancel update" : "Update venue"}
           </button>
         </div>
       </div>

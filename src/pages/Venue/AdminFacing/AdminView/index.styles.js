@@ -7,8 +7,8 @@ export const AdminView = styled.div`
     .admin-controls {
       button {
         padding: 10px;
-        &:first-of-type {
-          margin-right: 10px;
+        &:last-of-type {
+          margin-left: 10px;
         }
       }
     }
