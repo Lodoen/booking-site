@@ -5,5 +5,6 @@ export const UpdateProfileForm = styled(BaseForm)`
   grid-column: 1 / -1;
   button {
     width: 100%;
+    margin-bottom: 10px;
   }
 `;
