@@ -6,6 +6,7 @@ import YourBookings from "./YourBookings";
 import { BsCaretDown, BsCaretUp } from "react-icons/bs";
 import * as S from "./index.styles";
 import undefinedImg from "../../../assets/no-image-available.png";
+import Loading from "../../../components/Loading";
 
 export default function ProfilePage({ user }) {
   const [profile, setProfile] = useState({});
@@ -23,11 +24,7 @@ export default function ProfilePage({ user }) {
   }, [data]);
 
   if (isLoading) {
-    return (
-      <div>
-        <h1>Loading profile</h1>
-      </div>
-    );
+    return <Loading text="profile" />;
   }
 
   if (isError) {
