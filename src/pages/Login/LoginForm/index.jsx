@@ -1,12 +1,14 @@
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import useAuth from "../../../hooks/useAuth";
 import useLocalStorage from "../../../hooks/useLocalStorage";
-import { useContext, useState } from "react";
 import { UserContext } from "../../../context/UserContext";
 import * as S from "./index.styles";
+import useFeedback from "../../../hooks/useFeedback";
+import Alert from "../../../components/Alert";
 
 const schema = yup
   .object({
@@ -23,8 +25,7 @@ export default function LoginForm() {
   const { login } = useAuth();
   const { save } = useLocalStorage("user");
   const { setUser } = useContext(UserContext);
-
-  const [showFeedback, setShowFeedback] = useState(false);
+  const { feedbackMessage, feedbackType, setFeedback } = useFeedback();
 
   const {
     register,
@@ -36,7 +37,7 @@ export default function LoginForm() {
 
   async function onSubmit(data) {
     try {
-      setShowFeedback("Loading ...");
+      setFeedback("Loading ...", "info");
       const { fetchedLogin, stringifiedLogin } = await login(data);
 
       if (fetchedLogin.ok) {
@@ -44,10 +45,10 @@ export default function LoginForm() {
         setUser(stringifiedLogin);
         navigate("/profile");
       } else {
-        setShowFeedback(stringifiedLogin.errors[0].message);
+        setFeedback(stringifiedLogin.errors[0].message, "error");
       }
     } catch (error) {
-      setShowFeedback("Encountered error on login");
+      setFeedback("Encountered error on login.", "error");
     }
   }
 
@@ -71,7 +72,11 @@ export default function LoginForm() {
         Login
       </button>
 
-      {showFeedback ? <p>{showFeedback}</p> : null}
+      {feedbackMessage && (
+        <Alert status={feedbackType}>
+          <span>{feedbackMessage}</span>
+        </Alert>
+      )}
     </S.LoginForm>
   );
 }
