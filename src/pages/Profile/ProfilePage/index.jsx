@@ -41,28 +41,31 @@ export default function ProfilePage({ user }) {
   const { avatar, name, venueManager, venues, bookings } = profile;
   return (
     <S.ProfilePage>
-      <section className="profile-details">
-        <figure>
-          {<img src={avatar ? avatar : undefinedImg} alt="Profile image" />}
-        </figure>
-        <div>
-          <h1>{name ? name : "Undefined"}</h1>
-          <p>{venueManager ? "Venue Manager" : "Customer"}</p>
-          <button
-            onClick={() => setIsUpdating(!isUpdating)}
-            className="toggle-update-form-button"
-          >
-            {isUpdating ? "Close update form" : "Open update form"} &gt;&gt;
-          </button>
-        </div>
+      <div className="profile-details-wrapper">
+        <section className="profile-details">
+          <figure>
+            {<img src={avatar ? avatar : undefinedImg} alt="Profile image" />}
+          </figure>
+          <div>
+            <h1>{name ? name : "Undefined"}</h1>
+            <p>{venueManager ? "Venue Manager" : "Customer"}</p>
+            <button
+              onClick={() => setIsUpdating(!isUpdating)}
+              className="toggle-update-form-button"
+            >
+              {isUpdating ? "Close update form" : "Open update form"} &gt;&gt;
+            </button>
+          </div>
 
-        {isUpdating && (
-          <UpdateProfile
-            previousProfileData={user}
-            setDisplayedProfile={setProfile}
-          />
-        )}
-      </section>
+          {isUpdating && (
+            <UpdateProfile
+              previousProfileData={user}
+              setDisplayedProfile={setProfile}
+            />
+          )}
+        </section>
+      </div>
+
       {user.venueManager && (
         <section>
           <div className="profile-controls">

@@ -1,22 +1,25 @@
 import styled from "styled-components";
 
 export const ProfilePage = styled.section`
+  h1 {
+    font-size: 1.5rem;
+    margin: 20px 0 0 0;
+  }
+
   h2,
   h3 {
     font-weight: normal;
   }
 
-  section {
+  .profile-details-wrapper {
     border-bottom: 1px solid #000;
+  }
 
-    &:last-of-type {
-      border: none;
-    }
-
+  section {
     &.profile-details {
       max-width: ${({ theme }) => theme.screen.medium};
       margin: 0 auto;
-      padding-bottom: 30px;
+      padding: 20px 0 20px 0;
 
       figure {
         margin: 0;
@@ -40,10 +43,15 @@ export const ProfilePage = styled.section`
       display: flex;
       align-items: center;
 
+      & > h2 {
+        font-size: 1.25rem;
+        margin-right: 5px;
+      }
+
       button {
         padding: 0;
-        width: 30px;
-        height: 30px;
+        width: 20px;
+        height: 20px;
         border: 0;
         background-color: #fff;
 
