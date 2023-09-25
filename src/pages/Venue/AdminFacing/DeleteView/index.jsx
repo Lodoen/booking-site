@@ -1,25 +1,30 @@
 import { useState } from "react";
 import useVenue from "../../../../hooks/useVenue";
 import * as S from "./index.styles";
+import Alert from "../../../../components/Alert";
+import useFeedback from "../../../../hooks/useFeedback";
 
 export default function DeleteView({ id, setIsShowingDeleteView }) {
   const [isDeleted, setIsDeleted] = useState(false);
-  const [showRemoveFeedback, setShowRemoveFeedback] = useState(false);
+  const { feedbackMessage, feedbackType, setFeedback } = useFeedback();
   const { remove } = useVenue();
 
   const removeVenue = async () => {
     try {
-      setShowRemoveFeedback("Loading ...");
+      setFeedback("Loading ...", "info");
       const { fetchedRemove } = await remove(id);
 
       if (fetchedRemove.ok) {
         setIsDeleted(true);
       } else {
-        setShowRemoveFeedback("We encountered error on remove");
+        setFeedback(
+          "We encountered error on deletion. Try again later.",
+          "error",
+        );
       }
     } catch (error) {
       console.log(error);
-      setShowRemoveFeedback("Encountered error on remove");
+      setFeedback("We encountered error on deletion.", "error");
     }
   };
 
@@ -28,6 +33,9 @@ export default function DeleteView({ id, setIsShowingDeleteView }) {
       {isDeleted ? (
         <div>
           <h1>Venue deleted</h1>
+          <Alert status="success">
+            <span>Venue has been deleted.</span>
+          </Alert>
         </div>
       ) : (
         <div>
@@ -45,7 +53,11 @@ export default function DeleteView({ id, setIsShowingDeleteView }) {
           >
             No, back to venue page
           </button>
-          {showRemoveFeedback && <div>{showRemoveFeedback}</div>}
+          {feedbackMessage && (
+            <Alert status={feedbackType}>
+              <span>{feedbackMessage}</span>
+            </Alert>
+          )}
         </div>
       )}
     </S.DeleteView>

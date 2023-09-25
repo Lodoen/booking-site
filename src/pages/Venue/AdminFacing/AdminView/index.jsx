@@ -4,6 +4,8 @@ import VenueManagement from "../../../../components/forms/VenueManagement";
 import VenueDetails from "../../VenueDetails";
 import BookingManagement from "./BookingManagement";
 import * as S from "./index.styles";
+import useFeedback from "../../../../hooks/useFeedback";
+import Alert from "../../../../components/Alert";
 
 export default function AdminView({
   id,
@@ -12,21 +14,21 @@ export default function AdminView({
   setVenueDetails,
   setIsShowingDeleteView,
 }) {
-  const [showFeedback, setShowFeedback] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [isShowingAdminView, setIsShowingAdminView] = useState(false);
 
   const { update } = useVenue();
+  const { feedbackMessage, feedbackType, setFeedback } = useFeedback();
 
   const updateVenue = async (body) => {
     try {
       setIsDisabled(true);
-      setShowFeedback("Loading ...");
+      setFeedback("Loading ...", "info");
       const { fetchedUpdate, stringifiedUpdate } = await update(id, body);
 
       if (fetchedUpdate.ok) {
         setIsDisabled(false);
-        setShowFeedback("Venue updated!");
+        setFeedback("Venue updated!");
         setVenueDetails((prevDetails) => ({
           ...stringifiedUpdate,
           owner: prevDetails.owner,
@@ -34,11 +36,10 @@ export default function AdminView({
         setIsShowingAdminView(false);
       } else {
         setIsDisabled(false);
-        setShowFeedback(stringifiedUpdate.errors[0].message);
+        setFeedback(stringifiedUpdate.errors[0].message, "error");
       }
     } catch (error) {
-      console.log(error);
-      setShowFeedback("Encountered error on update");
+      setFeedback("Encountered error on update", "error");
     }
   };
 
@@ -73,7 +74,11 @@ export default function AdminView({
       ) : (
         <VenueDetails venue={venueDetails} isCustomerView={false} />
       )}
-      {showFeedback && <div>{showFeedback}</div>}
+      {feedbackMessage && (
+        <Alert status={feedbackType}>
+          <span>{feedbackMessage}</span>
+        </Alert>
+      )}
       <BookingManagement bookings={bookings} />
     </S.AdminView>
   );
