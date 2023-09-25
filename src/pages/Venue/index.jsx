@@ -4,6 +4,7 @@ import useApi from "../../hooks/useApi";
 import { UserContext } from "../../context/UserContext";
 import AdminFacing from "./AdminFacing";
 import CustomerFacing from "./CustomerFacing";
+import Loading from "../../components/Loading";
 
 export default function Venue() {
   let params = useParams();
@@ -14,11 +15,7 @@ export default function Venue() {
   );
 
   if (isLoading) {
-    return (
-      <div>
-        <h1>Loading venues</h1>
-      </div>
-    );
+    return <Loading text="venue" />;
   }
 
   if (isError) {
