@@ -57,7 +57,12 @@ export default function BookingForm({ venueInfo }) {
         setFeedback("Encountered error on booking.", "error");
       }
     } else {
-      if (!venueIsAvailable) {
+      if (!start || !end) {
+        setFeedback(
+          "Select a check-in and checkout date for your desired booking duration.",
+          "warning",
+        );
+      } else if (!venueIsAvailable) {
         setFeedback(
           "One or more days within your chosen date range are unavailable due to prior bookings. Please select a different date range.",
           "warning",
