@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export const Alert = styled.div`
-  .alert {
+export const FeedbackContainer = styled.div`
+  .feedback {
     padding: 20px 15px;
     margin: 15px 0;
     border-radius: 5px;
