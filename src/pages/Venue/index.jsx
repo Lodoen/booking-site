@@ -5,6 +5,7 @@ import { UserContext } from "../../context/UserContext";
 import AdminFacing from "./AdminFacing";
 import CustomerFacing from "./CustomerFacing";
 import Loading from "../../components/Loading";
+import Feedback from "../../components/Feedback";
 
 export default function Venue() {
   let params = useParams();
@@ -27,7 +28,12 @@ export default function Venue() {
   }
 
   if (data.statusCode && (data.statusCode == 400 || data.statusCode == 404)) {
-    return <div>No venue with matching id</div>;
+    return (
+      <section>
+        <h1>No venue found</h1>
+        <Feedback message="No venue with matching id" status="error" />
+      </section>
+    );
   }
 
   const isOwnerDefined = data && data.owner && data.owner.name;
