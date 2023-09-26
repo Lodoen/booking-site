@@ -1,21 +1,80 @@
 import styled from "styled-components";
 
 export const Calendar = styled.div`
-  .calendar-controls {
+  .calendar-controls,
+  .calendar-explanation {
+    width: 210px;
+    margin: 0 auto;
+  }
+  .calendar-controls,
+  .calendar-controls button figure,
+  .calendar-explanation p {
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
+  }
 
-    button.base-button {
-      padding: 5px 10px;
+  .calendar-controls {
+    justify-content: space-between;
+
+    button {
+      padding: 10px 5px;
+      background: none;
+      border: none;
       &:hover {
-        text-decoration: none;
+        cursor: pointer;
+      }
+
+      figure {
+        margin: 0;
+        justify-content: center;
+        svg {
+          width: 25px;
+          height: 25px;
+        }
       }
     }
 
     div {
       margin: 0 20px;
+    }
+  }
+
+  .calendar-explanation {
+    p span {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+
+    p:first-of-type span {
+      background-color: #84d690;
+    }
+
+    p:last-of-type span {
+      background-color: #ff6464;
+    }
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.screen.small}) {
+    .calendar-controls,
+    .calendar-explanation {
+      width: 245px;
+    }
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.screen.medium}) {
+    .calendar-controls,
+    .calendar-explanation {
+      width: 350px;
+    }
+
+    .calendar-explanation {
+      display: flex;
+
+      p:first-of-type {
+        margin-right: 30px;
+      }
     }
   }
 `;

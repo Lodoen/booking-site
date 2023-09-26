@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { BsUnindent, BsIndent } from "react-icons/bs";
 import CalendarTable from "./CalendarTable";
 import { BookingContext } from "../../../../../context/BookingContext";
 import useCalendar from "./useCalendar";
@@ -41,18 +42,29 @@ export default function Calendar() {
   return (
     <S.Calendar>
       <div className="calendar-controls">
-        <button onClick={handleMonthDecrease} className="base-button">
-          -
+        <button onClick={handleMonthDecrease}>
+          <figure>
+            <BsUnindent />
+          </figure>
         </button>
         <div>
           {monthNames[date.getMonth()]} {date.getFullYear()}
         </div>
-        <button onClick={handleMonthIncrease} className="base-button">
-          +
+        <button onClick={handleMonthIncrease}>
+          <figure>
+            <BsIndent />
+          </figure>
         </button>
       </div>
-
       <CalendarTable weeks={listOfDates} />
+      <div className="calendar-explanation">
+        <p>
+          <span></span>Available
+        </p>
+        <p>
+          <span></span>Booked
+        </p>
+      </div>
     </S.Calendar>
   );
 }
