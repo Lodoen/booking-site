@@ -95,8 +95,8 @@ export default function RegisterForm() {
       </div>
 
       <div className="input-group">
-        <label htmlFor="avatar">Avatar:</label>
-        <input {...register("avatar")} type="text" />
+        <label htmlFor="avatar">Avatar (url):</label>
+        <input {...register("avatar")} type="url" />
         <p>{errors.avatar?.message}</p>
       </div>
 
