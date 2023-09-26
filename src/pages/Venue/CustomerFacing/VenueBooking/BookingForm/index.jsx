@@ -5,7 +5,7 @@ import useExtractFromDate from "../../../../../hooks/useExtractFromDate";
 import useBookingForm from "./useBookingForm";
 import * as S from "./index.styles";
 import useFeedback from "../../../../../hooks/useFeedback";
-import Alert from "../../../../../components/Alert";
+import Feedback from "../../../../../components/Feedback";
 
 export default function BookingForm({ venueInfo }) {
   const { extractDate } = useExtractFromDate();
@@ -102,11 +102,7 @@ export default function BookingForm({ venueInfo }) {
             Book venue
           </button>
         </form>
-        {feedbackMessage && (
-          <Alert status={feedbackType}>
-            <span>{feedbackMessage}</span>
-          </Alert>
-        )}
+        <Feedback message={feedbackMessage} status={feedbackType} />
       </div>
     </S.OrderWrapper>
   );

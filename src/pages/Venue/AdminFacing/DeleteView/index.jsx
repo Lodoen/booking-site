@@ -1,8 +1,8 @@
 import { useState } from "react";
 import useVenue from "../../../../hooks/useVenue";
 import * as S from "./index.styles";
-import Alert from "../../../../components/Alert";
 import useFeedback from "../../../../hooks/useFeedback";
+import Feedback from "../../../../components/Feedback";
 
 export default function DeleteView({ id, setIsShowingDeleteView }) {
   const [isDeleted, setIsDeleted] = useState(false);
@@ -33,9 +33,7 @@ export default function DeleteView({ id, setIsShowingDeleteView }) {
       {isDeleted ? (
         <div>
           <h1>Venue deleted</h1>
-          <Alert status="success">
-            <span>Venue has been deleted.</span>
-          </Alert>
+          <Feedback message="Venue has been deleted." />
         </div>
       ) : (
         <div>
@@ -53,11 +51,7 @@ export default function DeleteView({ id, setIsShowingDeleteView }) {
           >
             No, back to venue page
           </button>
-          {feedbackMessage && (
-            <Alert status={feedbackType}>
-              <span>{feedbackMessage}</span>
-            </Alert>
-          )}
+          <Feedback message={feedbackMessage} status={feedbackType} />
         </div>
       )}
     </S.DeleteView>

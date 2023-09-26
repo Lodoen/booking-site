@@ -5,7 +5,7 @@ import VenueDetails from "../../VenueDetails";
 import BookingManagement from "./BookingManagement";
 import * as S from "./index.styles";
 import useFeedback from "../../../../hooks/useFeedback";
-import Alert from "../../../../components/Alert";
+import Feedback from "../../../../components/Feedback";
 
 export default function AdminView({
   id,
@@ -74,11 +74,7 @@ export default function AdminView({
       ) : (
         <VenueDetails venue={venueDetails} isCustomerView={false} />
       )}
-      {feedbackMessage && (
-        <Alert status={feedbackType}>
-          <span>{feedbackMessage}</span>
-        </Alert>
-      )}
+      <Feedback message={feedbackMessage} status={feedbackType} />
       <BookingManagement bookings={bookings} />
     </S.AdminView>
   );

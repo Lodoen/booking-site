@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import VenueManagement from "../../components/forms/VenueManagement";
 import useVenue from "../../hooks/useVenue";
-import Alert from "../../components/Alert";
 import useFeedback from "../../hooks/useFeedback";
+import Feedback from "../../components/Feedback";
 
 export default function Create() {
   const { user } = useContext(UserContext);
@@ -34,11 +34,7 @@ export default function Create() {
   return user && user.venueManager ? (
     <section>
       <VenueManagement submitFunction={createVenue} />
-      {feedbackMessage && (
-        <Alert status={feedbackType}>
-          <span>{feedbackMessage}</span>
-        </Alert>
-      )}
+      <Feedback message={feedbackMessage} status={feedbackType} />
     </section>
   ) : (
     <div>You have to be a venue manager to create venues</div>

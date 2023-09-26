@@ -8,7 +8,7 @@ import useLocalStorage from "../../../hooks/useLocalStorage";
 import { UserContext } from "../../../context/UserContext";
 import * as S from "./index.styles";
 import useFeedback from "../../../hooks/useFeedback";
-import Alert from "../../../components/Alert";
+import Feedback from "../../../components/Feedback";
 
 const schema = yup
   .object({
@@ -72,11 +72,7 @@ export default function LoginForm() {
         Login
       </button>
 
-      {feedbackMessage && (
-        <Alert status={feedbackType}>
-          <span>{feedbackMessage}</span>
-        </Alert>
-      )}
+      <Feedback message={feedbackMessage} status={feedbackType} />
     </S.LoginForm>
   );
 }

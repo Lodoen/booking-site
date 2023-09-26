@@ -6,8 +6,8 @@ import useProfile from "./useProfile";
 import useLocalStorage from "../../../../hooks/useLocalStorage";
 import { UserContext } from "../../../../context/UserContext";
 import * as S from "./index.styles";
-import Alert from "../../../../components/Alert";
 import useFeedback from "../../../../hooks/useFeedback";
+import Feedback from "../../../../components/Feedback";
 
 const schema = yup
   .object({
@@ -67,11 +67,7 @@ export default function UpdateProfile({
       <button type="submit" className="base-button">
         Update
       </button>
-      {feedbackMessage && (
-        <Alert status={feedbackType}>
-          <span>{feedbackMessage}</span>
-        </Alert>
-      )}
+      <Feedback message={feedbackMessage} status={feedbackType} />
     </S.UpdateProfileForm>
   );
 }

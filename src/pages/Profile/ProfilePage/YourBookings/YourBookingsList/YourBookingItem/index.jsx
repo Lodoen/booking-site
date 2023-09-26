@@ -14,8 +14,8 @@ import useExtractFromDate from "../../../../../../hooks/useExtractFromDate";
 import useBooking from "../../../../../../hooks/useBooking";
 import * as S from "./index.styles";
 import undefinedImg from "../../../../../../assets/no-image-available.png";
-import Alert from "../../../../../../components/Alert";
 import useFeedback from "../../../../../../hooks/useFeedback";
+import Feedback from "../../../../../../components/Feedback";
 
 export default function YourBookingItem({
   id,
@@ -54,9 +54,9 @@ export default function YourBookingItem({
     return (
       <div>
         {isCancelled ? (
-          <Alert>
-            <span>Booking at {name} has been cancelled.</span>
-          </Alert>
+          <Feedback
+            message={`Booking at ${name} has been cancelled.`}
+          ></Feedback>
         ) : (
           <S.YourBookingItem>
             <Link to={`/venue/${venue.id}`}>
@@ -124,11 +124,7 @@ export default function YourBookingItem({
             >
               CANCEL
             </button>
-            {feedbackMessage && (
-              <Alert status={feedbackType}>
-                <span>{feedbackMessage}</span>
-              </Alert>
-            )}
+            <Feedback message={feedbackMessage} status={feedbackType} />
           </S.YourBookingItem>
         )}
       </div>
