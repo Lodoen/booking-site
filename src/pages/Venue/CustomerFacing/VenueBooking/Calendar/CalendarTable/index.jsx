@@ -6,13 +6,13 @@ export default function CalendarTable({ weeks = [] }) {
     <S.CalendarTable>
       <thead>
         <tr>
-          <th>Sun</th>
-          <th>Mon</th>
-          <th>Tue</th>
-          <th>Wed</th>
-          <th>Thu</th>
-          <th>Fri</th>
-          <th>Sat</th>
+          <th>Su</th>
+          <th>Mo</th>
+          <th>Tu</th>
+          <th>We</th>
+          <th>Th</th>
+          <th>Fr</th>
+          <th>Sa</th>
         </tr>
       </thead>
       <tbody>
