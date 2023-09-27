@@ -1,3 +1,4 @@
+import Feedback from "../Feedback";
 import VenueItem from "./VenueItem";
 import * as S from "./index.styles";
 
@@ -11,5 +12,7 @@ export default function VenueList({ venues }) {
       </S.VenueList>
     );
   }
-  return <div>Looks like there is no venues available</div>;
+  return (
+    <Feedback message="Looks like there is no venues available" status="info" />
+  );
 }
