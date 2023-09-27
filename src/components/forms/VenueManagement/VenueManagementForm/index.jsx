@@ -102,6 +102,8 @@ export default function VenueManagementForm({
   function onSubmit(data) {
     const { media, ...combinedData } = { ...data, meta, location };
     const body = { ...combinedData, media: convertToArray(media) };
+    body.location.lat = parseInt(location.lat);
+    body.location.lng = parseInt(location.lng);
     submitFunction(body);
   }
 
@@ -164,7 +166,7 @@ export default function VenueManagementForm({
                 <input
                   {...register("price")}
                   type="number"
-                  defaultValue={details.rating}
+                  defaultValue={details.price}
                   disabled={isDisabled}
                   min="1"
                 />
