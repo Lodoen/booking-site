@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { BookingContext } from "../../../../../../../context/BookingContext";
 import useExtractFromDate from "../../../../../../../hooks/useExtractFromDate";
+import { UserContext } from "../../../../../../../context/UserContext";
 
 export default function CalendarTableData({ week = [] }) {
   const { extractDateNumber } = useExtractFromDate();
   const { yourBooking, setYourBooking } = useContext(BookingContext);
+  const { user } = useContext(UserContext);
   const daysInAWeekIndexes = [0, 1, 2, 3, 4, 5, 6];
 
   const handleBookingChange = (props) => {
@@ -36,8 +38,9 @@ export default function CalendarTableData({ week = [] }) {
         const dayInWeek = week.find((day) => day.weekdayIndex === index);
         return dayInWeek ? (
           <td key={index}>
-            {dayInWeek.isAvailable ? (
+            {dayInWeek.isAvailable && user ? (
               <button
+                className="available"
                 onClick={() => {
                   handleBookingChange(dayInWeek);
                 }}
@@ -45,7 +48,9 @@ export default function CalendarTableData({ week = [] }) {
                 {dayInWeek.date}
               </button>
             ) : (
-              <span>{dayInWeek.date}</span>
+              <span className={dayInWeek.isAvailable ? "available" : "booked"}>
+                {dayInWeek.date}
+              </span>
             )}
           </td>
         ) : (

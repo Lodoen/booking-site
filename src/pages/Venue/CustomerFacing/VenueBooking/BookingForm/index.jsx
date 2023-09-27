@@ -6,12 +6,14 @@ import useBookingForm from "./useBookingForm";
 import * as S from "./index.styles";
 import useFeedback from "../../../../../hooks/useFeedback";
 import Feedback from "../../../../../components/Feedback";
+import { UserContext } from "../../../../../context/UserContext";
 
 export default function BookingForm({ venueInfo }) {
   const { extractDate } = useExtractFromDate();
   const { checkAvailableDates } = useBookingForm();
   const { create } = useBooking();
   const { feedbackMessage, feedbackType, setFeedback } = useFeedback();
+  const { user } = useContext(UserContext);
 
   const { yourBooking, setYourBooking, currentBookings, setCurrentBookings } =
     useContext(BookingContext);
@@ -76,7 +78,7 @@ export default function BookingForm({ venueInfo }) {
     }
   };
 
-  return (
+  return user ? (
     <S.OrderWrapper>
       <h3>Order</h3>
       <div>
@@ -110,5 +112,10 @@ export default function BookingForm({ venueInfo }) {
         <Feedback message={feedbackMessage} status={feedbackType} />
       </div>
     </S.OrderWrapper>
+  ) : (
+    <Feedback
+      message="You have to be logged in to book venues."
+      status="info"
+    />
   );
 }

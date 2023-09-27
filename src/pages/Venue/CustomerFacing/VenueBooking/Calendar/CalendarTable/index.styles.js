@@ -33,15 +33,19 @@ export const CalendarTable = styled.table`
     span,
     button {
       box-sizing: border-box;
+      border: 0;
     }
     span {
       display: inline-block;
-      background-color: #ff6464;
+      &.booked {
+        background-color: #ff6464;
+      }
     }
-    button {
-      border-radius: 0;
-      border: 0;
+    .available {
       background-color: #84d690;
+    }
+    button.available {
+      border-radius: 0;
       &:hover {
         cursor: pointer;
         text-decoration: underline;
