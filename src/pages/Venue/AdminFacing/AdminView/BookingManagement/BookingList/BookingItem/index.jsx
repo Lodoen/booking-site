@@ -1,12 +1,9 @@
 import { BsPerson, BsCalendarWeek } from "react-icons/bs";
 import * as S from "./index.styles";
+import useExtractFromDate from "../../../../../../../hooks/useExtractFromDate";
 
-export default function BookingItem({ guests, dateFrom, dateTo }) {
-  const formatDate = (dateString) => {
-    const options = { year: "numeric", month: "short", day: "numeric" };
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-GB", options);
-  };
+export default function BookingItem({ guests, dateFrom, dateTo, updated }) {
+  const { extractDate } = useExtractFromDate();
 
   return (
     <S.BookingItem>
@@ -17,9 +14,10 @@ export default function BookingItem({ guests, dateFrom, dateTo }) {
       <div>
         <BsCalendarWeek />
         {dateFrom && dateTo
-          ? `${formatDate(dateFrom)} - ${formatDate(dateTo)}`
+          ? `${extractDate(dateFrom)} - ${extractDate(dateTo)}`
           : "Undefined date"}
       </div>
+      <div>Booked on: {extractDate(updated)}</div>
     </S.BookingItem>
   );
 }
