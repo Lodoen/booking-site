@@ -6,21 +6,31 @@ import {
   BsFillCarFrontFill,
   BsFillCupHotFill,
   BsFileEarmarkPerson,
+  BsCash,
 } from "react-icons/bs";
 import { GiSittingDog } from "react-icons/gi";
 import * as S from "./index.styles";
 import MediaShowcase from "./MediaShowcase";
 import useCheckUndefined from "../../../hooks/useCheckUndefined";
+import Feedback from "../../../components/Feedback";
 
 export default function VenueDetails({ venue, isCustomerView = true }) {
   const { checkUndefined } = useCheckUndefined();
 
   if (!venue) {
-    return <div>Found no venue</div>;
+    return <Feedback message="Found no venue" status="error" />;
   }
 
-  const { media, location, maxGuests, owner, rating, meta, description } =
-    venue;
+  const {
+    media,
+    location,
+    maxGuests,
+    owner,
+    rating,
+    meta,
+    description,
+    price,
+  } = venue;
 
   return (
     <S.VenueDetails>
@@ -56,11 +66,11 @@ export default function VenueDetails({ venue, isCustomerView = true }) {
                 )}
               </div>
               <div>
-                <BsFileEarmarkPerson />
-                {owner && owner.name ? (
-                  <span>{owner.name}</span>
+                <BsCash />
+                {price ? (
+                  <span>{price}kr</span>
                 ) : (
-                  <div>No owner information given</div>
+                  <div>No Price information given</div>
                 )}
               </div>
               <div>
@@ -69,6 +79,14 @@ export default function VenueDetails({ venue, isCustomerView = true }) {
                   <span>{checkUndefined(rating)}</span>
                 ) : (
                   <div>No rating information given</div>
+                )}
+              </div>
+              <div>
+                <BsFileEarmarkPerson />
+                {owner && owner.name ? (
+                  <span>{owner.name}</span>
+                ) : (
+                  <div>No owner information given</div>
                 )}
               </div>
             </section>
