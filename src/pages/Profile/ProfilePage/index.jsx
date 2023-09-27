@@ -7,6 +7,7 @@ import { BsCaretDown, BsCaretUp } from "react-icons/bs";
 import * as S from "./index.styles";
 import undefinedImg from "../../../assets/no-image-available.png";
 import Loading from "../../../components/Loading";
+import Feedback from "../../../components/Feedback";
 
 export default function ProfilePage({ user }) {
   const [profile, setProfile] = useState({});
@@ -29,9 +30,10 @@ export default function ProfilePage({ user }) {
 
   if (isError) {
     return (
-      <div>
+      <section>
         <h1>Error</h1>
-      </div>
+        <Feedback message="Encountered error when retrieving profile." />
+      </section>
     );
   }
 
