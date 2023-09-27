@@ -3,6 +3,7 @@ import VenueList from "../../components/VenueList";
 import useApi from "../../hooks/useApi";
 import SearchAndFilter from "./SearchAndFilter";
 import Loading from "../../components/Loading";
+import Feedback from "../../components/Feedback";
 
 const baseFilter = {
   search: undefined,
@@ -89,9 +90,10 @@ export default function Home() {
 
   if (isError) {
     return (
-      <div>
+      <section>
         <h1>Error</h1>
-      </div>
+        <Feedback message="Encountered error when retrieving venues." />
+      </section>
     );
   }
 
