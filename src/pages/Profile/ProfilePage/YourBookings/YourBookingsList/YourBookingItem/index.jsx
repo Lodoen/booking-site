@@ -16,6 +16,7 @@ import * as S from "./index.styles";
 import undefinedImg from "../../../../../../assets/no-image-available.png";
 import useFeedback from "../../../../../../hooks/useFeedback";
 import Feedback from "../../../../../../components/Feedback";
+import useCheckUndefined from "../../../../../../hooks/useCheckUndefined";
 
 export default function YourBookingItem({
   id,
@@ -23,6 +24,7 @@ export default function YourBookingItem({
   dateTo,
   guests,
   venue,
+  updated,
 }) {
   const { extractDate } = useExtractFromDate();
   const { remove } = useBooking();
@@ -30,6 +32,7 @@ export default function YourBookingItem({
   const [isDisabled, setIsDisabled] = useState(false);
   const { feedbackMessage, feedbackType, setFeedback } = useFeedback();
   const { name, media, price, rating, meta, location } = venue;
+  const { checkUndefined } = useCheckUndefined();
 
   const cancelVenue = async (id) => {
     try {
@@ -54,9 +57,11 @@ export default function YourBookingItem({
     return (
       <div>
         {isCancelled ? (
-          <Feedback
-            message={`Booking at ${name} has been cancelled.`}
-          ></Feedback>
+          <S.YourCancelledBookingItem>
+            <Feedback
+              message={`Booking at ${name} has been cancelled.`}
+            ></Feedback>
+          </S.YourCancelledBookingItem>
         ) : (
           <S.YourBookingItem>
             <Link to={`/venue/${venue.id}`}>
@@ -67,7 +72,7 @@ export default function YourBookingItem({
                 />
               </figure>
               <div className="title-and-rating">
-                <h2>{name}</h2>
+                <h2>{checkUndefined(name)}</h2>
                 <div className="detail">
                   <figure>
                     <BsFillStarFill />
@@ -79,13 +84,14 @@ export default function YourBookingItem({
                 <figure>
                   <BsPinMap />
                 </figure>
-                {location.city}, {location.country}
+                {checkUndefined(location.city)},{" "}
+                {checkUndefined(location.country)}
               </div>
               <div className="detail">
                 <figure>
                   <BsPerson />
                 </figure>
-                {guests}
+                {checkUndefined(guests)}
               </div>
               <div className="detail amenities">
                 {meta.wifi && (
@@ -110,6 +116,7 @@ export default function YourBookingItem({
                 )}
               </div>
               <div className="detail">{price}kr per night</div>
+              <div className="detail">Booked on: {extractDate(updated)}</div>
               <div className="detail">
                 <figure>
                   <BsCalendarWeek />

@@ -7,3 +7,12 @@ export const YourBookingItem = styled(VenueItem)`
     width: 100%;
   }
 `;
+
+export const YourCancelledBookingItem = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  height: 100%;
+  box-sizing: border-box;
+  padding-bottom: 35px;
+`;
