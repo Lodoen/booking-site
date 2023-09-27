@@ -23,7 +23,9 @@ function extractLocationInfo(location) {
 
 export default function Home() {
   const [venuesToRender, setVenuesToRender] = useState([]);
-  const { data, isLoading, isError } = useApi("/venues?limit=100");
+  const { data, isLoading, isError } = useApi(
+    "/venues?limit=100&sort=updated&sortOrder=desc",
+  );
   const [filter, setFilter] = useState(baseFilter);
 
   //Filter venuesToRender whenever filter state changes
