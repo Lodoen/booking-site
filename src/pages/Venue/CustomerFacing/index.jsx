@@ -10,7 +10,11 @@ export default function CustomerFacing({ venue }) {
         <VenueDetails venue={restOfVenue} />
         <VenueBooking
           bookings={bookings}
-          venueInfo={{ id, maxGuests: restOfVenue.maxGuests }}
+          venueInfo={{
+            id,
+            maxGuests: restOfVenue.maxGuests,
+            price: restOfVenue.price,
+          }}
         />
       </S.CustomerFacingWrapper>
     </section>

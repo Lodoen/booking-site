@@ -9,7 +9,7 @@ import Feedback from "../../../../../components/Feedback";
 import { UserContext } from "../../../../../context/UserContext";
 
 export default function BookingForm({ venueInfo }) {
-  const { extractDate } = useExtractFromDate();
+  const { extractDate, extractDateNumber } = useExtractFromDate();
   const { checkAvailableDates } = useBookingForm();
   const { create } = useBooking();
   const { feedbackMessage, feedbackType, setFeedback } = useFeedback();
@@ -18,7 +18,12 @@ export default function BookingForm({ venueInfo }) {
   const { yourBooking, setYourBooking, currentBookings, setCurrentBookings } =
     useContext(BookingContext);
   const [guests, setGuests] = useState(1);
-  const { id, maxGuests } = venueInfo;
+  const { id, maxGuests, price } = venueInfo;
+  const totalPrice =
+    (extractDateNumber(yourBooking.end) -
+      extractDateNumber(yourBooking.start) +
+      1) *
+    price;
 
   const handleGuestChange = (event) => setGuests(event.target.value);
 
@@ -105,6 +110,12 @@ export default function BookingForm({ venueInfo }) {
               maxGuests ? maxGuests : 1
             }`}
           />
+          <p>
+            <span>Total price: </span>
+            {typeof totalPrice === "number" && !isNaN(totalPrice)
+              ? `${totalPrice}kr`
+              : "undecided"}
+          </p>
           <button type="submit" className="base-button">
             Book venue
           </button>
