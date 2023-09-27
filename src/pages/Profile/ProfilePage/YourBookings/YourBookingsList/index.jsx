@@ -1,3 +1,4 @@
+import Feedback from "../../../../../components/Feedback";
 import YourBookingItem from "./YourBookingItem";
 import * as S from "./index.styles";
 
@@ -11,5 +12,5 @@ export default function YourBookingsList({ bookings }) {
       </S.YourBookingsList>
     );
   }
-  return <div>You currently have no bookings.</div>;
+  return <Feedback message="You currently have no bookings" status="info" />;
 }
