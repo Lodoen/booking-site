@@ -36,6 +36,15 @@ export default function ProfilePage({ user }) {
   }
 
   const { avatar, name, venueManager, venues, bookings } = profile;
+  const sortedVenues =
+    venues && Array.isArray(venues)
+      ? [...venues].sort((a, b) => new Date(b.updated) - new Date(a.updated))
+      : [];
+  const sortedBookings =
+    bookings && Array.isArray(bookings)
+      ? [...bookings].sort((a, b) => new Date(b.updated) - new Date(a.updated))
+      : [];
+
   return (
     <S.ProfilePage>
       <div className="profile-details-wrapper">
@@ -71,7 +80,7 @@ export default function ProfilePage({ user }) {
               {isShowingVenues ? <BsCaretDown /> : <BsCaretUp />}
             </button>
           </div>
-          <YourVenues venues={venues} isShowingVenues={isShowingVenues} />
+          <YourVenues venues={sortedVenues} isShowingVenues={isShowingVenues} />
         </section>
       )}
       <section>
@@ -82,7 +91,7 @@ export default function ProfilePage({ user }) {
           </button>
         </div>
         <YourBookings
-          bookings={bookings}
+          bookings={sortedBookings}
           isShowingBookings={isShowingBookings}
         />
       </section>
