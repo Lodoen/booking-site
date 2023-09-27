@@ -9,7 +9,7 @@ import Feedback from "../../../../../components/Feedback";
 import { UserContext } from "../../../../../context/UserContext";
 
 export default function BookingForm({ venueInfo }) {
-  const { extractDate, extractDateNumber } = useExtractFromDate();
+  const { extractDate } = useExtractFromDate();
   const { checkAvailableDates } = useBookingForm();
   const { create } = useBooking();
   const { feedbackMessage, feedbackType, setFeedback } = useFeedback();
@@ -19,11 +19,11 @@ export default function BookingForm({ venueInfo }) {
     useContext(BookingContext);
   const [guests, setGuests] = useState(1);
   const { id, maxGuests, price } = venueInfo;
-  const totalPrice =
-    (extractDateNumber(yourBooking.end) -
-      extractDateNumber(yourBooking.start) +
-      1) *
-    price;
+
+  const daysBetweenStartAndEnd =
+    (new Date(yourBooking.end) - new Date(yourBooking.start)) /
+    (1000 * 3600 * 24);
+  const totalPrice = (daysBetweenStartAndEnd + 1) * price;
 
   const handleGuestChange = (event) => setGuests(event.target.value);
 
