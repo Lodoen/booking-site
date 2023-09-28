@@ -29,7 +29,6 @@ export default function Home() {
   );
   const [filter, setFilter] = useState(baseFilter);
 
-  //Filter venuesToRender whenever filter state changes
   useEffect(() => {
     let filteredVenues = [...data];
 
