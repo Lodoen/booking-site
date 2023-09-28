@@ -37,6 +37,12 @@ export default function Create() {
       <Feedback message={feedbackMessage} status={feedbackType} />
     </section>
   ) : (
-    <div>You have to be a venue manager to create venues</div>
+    <section>
+      <h1>Not available</h1>
+      <Feedback
+        message="You have to be a venue manager to create venues"
+        status="error"
+      />
+    </section>
   );
 }
