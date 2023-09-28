@@ -54,40 +54,34 @@ export default function VenueDetails({ venue, isCustomerView = true }) {
                     {checkUndefined(location.country)}
                   </span>
                 ) : (
-                  <div>No location information given</div>
+                  <span>No location information given</span>
                 )}
               </div>
               <div>
                 <BsPerson />
-                {maxGuests ? (
-                  <span>{maxGuests}</span>
-                ) : (
-                  <div>No max guest information given</div>
-                )}
+                <span>
+                  {maxGuests ? maxGuests : "No max guest information given"}
+                </span>
               </div>
               <div>
                 <BsCash />
-                {price ? (
-                  <span>{price}kr</span>
-                ) : (
-                  <div>No Price information given</div>
-                )}
+                <span>{price ? price : "No price information given"}</span>
               </div>
               <div>
                 <BsFillStarFill />
-                {checkUndefined(rating) ? (
-                  <span>{checkUndefined(rating)}</span>
-                ) : (
-                  <div>No rating information given</div>
-                )}
+                <span>
+                  {checkUndefined(rating)
+                    ? checkUndefined(rating)
+                    : "No rating information given"}
+                </span>
               </div>
               <div>
                 <BsFileEarmarkPerson />
-                {owner && owner.name ? (
-                  <span>{owner.name}</span>
-                ) : (
-                  <div>No owner information given</div>
-                )}
+                <span>
+                  {owner && owner.name
+                    ? owner.name
+                    : "No owner information given"}
+                </span>
               </div>
             </section>
 
@@ -95,35 +89,28 @@ export default function VenueDetails({ venue, isCustomerView = true }) {
               <h2>Amenities</h2>
               <div>
                 <BsWifi />
-                {meta && meta.wifi ? (
-                  <span>Wifi included</span>
-                ) : (
-                  <span>Wifi not included</span>
-                )}
+                <span>
+                  Wifi {meta && meta.wifi ? "included" : "not included"}
+                </span>
               </div>
               <div>
                 <BsFillCarFrontFill />
-                {meta && meta.parking ? (
-                  <span>Parking included</span>
-                ) : (
-                  <span>Parking not included</span>
-                )}
+                <span>
+                  Parking {meta && meta.parking ? "included" : "not included"}
+                </span>
               </div>
               <div>
                 <BsFillCupHotFill />
-                {meta && meta.breakfast ? (
-                  <span>Breakfast included</span>
-                ) : (
-                  <span>Breakfast not included</span>
-                )}
+                <span>
+                  Breakfast{" "}
+                  {meta && meta.breakfast ? "included" : "not included"}
+                </span>
               </div>
               <div>
                 <GiSittingDog />
-                {meta && meta.pets ? (
-                  <span>Pets allowed</span>
-                ) : (
-                  <span>Pets not allowed</span>
-                )}
+                <span>
+                  Pets {meta && meta.pets ? "allowed" : "not allowed"}
+                </span>
               </div>
             </section>
           </div>
@@ -133,11 +120,7 @@ export default function VenueDetails({ venue, isCustomerView = true }) {
       <section className="description-wrapper">
         <h2>Description</h2>
         <div>
-          {description ? (
-            <div>{description}</div>
-          ) : (
-            <div>No description given</div>
-          )}
+          <div>{description ? description : "No description given"}</div>
         </div>
       </section>
     </S.VenueDetails>
