@@ -7,7 +7,7 @@ export const Container = styled.div`
 
   .floating-box {
     background-color: #fff;
-    padding: 30px;
+    padding: 30px 30px 10px 30px;
   }
 
   button.base-button {
@@ -35,7 +35,7 @@ export const Container = styled.div`
     .floating-box {
       width: 300px;
       border-radius: 10px;
-      padding: 50px;
+      padding: 50px 50px 25px 50px;
     }
   }
 `;
