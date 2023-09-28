@@ -16,6 +16,12 @@ export const ProfilePage = styled.section`
   }
 
   section {
+    &.profile-details figure,
+    .profile-controls {
+      display: flex;
+      align-items: center;
+    }
+
     &.profile-details {
       max-width: ${({ theme }) => theme.screen.medium};
       margin: 0 auto;
@@ -23,8 +29,6 @@ export const ProfilePage = styled.section`
 
       figure {
         margin: 0;
-        display: flex;
-        align-items: center;
         justify-content: center;
         height: 150px;
 
@@ -40,9 +44,6 @@ export const ProfilePage = styled.section`
     }
 
     .profile-controls {
-      display: flex;
-      align-items: center;
-
       & > h2 {
         font-size: 1.25rem;
         margin-right: 5px;
