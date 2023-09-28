@@ -51,6 +51,10 @@ export const Calendar = styled.div`
       background-color: #84d690;
     }
 
+    p:nth-of-type(2) span {
+      background-color: #8bbaff;
+    }
+
     p:last-of-type span {
       background-color: #ff6464;
     }
@@ -72,8 +76,8 @@ export const Calendar = styled.div`
     .calendar-explanation {
       display: flex;
 
-      p:first-of-type {
-        margin-right: 30px;
+      p:nth-of-type(2) {
+        margin: 0 30px;
       }
     }
   }

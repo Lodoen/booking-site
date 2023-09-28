@@ -62,6 +62,9 @@ export default function Calendar() {
           <span></span>Available
         </p>
         <p>
+          <span></span>Selected
+        </p>
+        <p>
           <span></span>Booked
         </p>
       </div>
