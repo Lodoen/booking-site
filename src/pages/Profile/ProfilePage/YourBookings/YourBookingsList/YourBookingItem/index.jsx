@@ -34,7 +34,7 @@ export default function YourBookingItem({
   const { name, media, price, rating, meta, location } = venue;
   const { checkUndefined } = useCheckUndefined();
 
-  const cancelVenue = async (id) => {
+  const cancelBooking = async (id) => {
     try {
       setIsDisabled(true);
       setFeedback("Loading ...", "info");
@@ -126,7 +126,7 @@ export default function YourBookingItem({
             </Link>
             <button
               disabled={isDisabled}
-              onClick={() => cancelVenue(id)}
+              onClick={() => cancelBooking(id)}
               className="base-button"
             >
               CANCEL
@@ -137,6 +137,6 @@ export default function YourBookingItem({
       </div>
     );
   } catch (error) {
-    return <div>error</div>;
+    return <Feedback message="Could not render booking" status="error" />;
   }
 }
