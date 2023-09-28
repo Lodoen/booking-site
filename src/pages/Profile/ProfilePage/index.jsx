@@ -31,8 +31,11 @@ export default function ProfilePage({ user }) {
   if (isError) {
     return (
       <section>
-        <h1>Error</h1>
-        <Feedback message="Encountered error when retrieving profile." />
+        <h1>Not available</h1>
+        <Feedback
+          message="Encountered error when retrieving profile."
+          status="error"
+        />
       </section>
     );
   }
