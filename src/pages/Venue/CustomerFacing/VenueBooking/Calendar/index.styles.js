@@ -47,16 +47,23 @@ export const Calendar = styled.div`
       margin-right: 10px;
     }
 
-    p:first-of-type span {
-      background-color: #84d690;
+    .calendar-explanation-row:first-of-type {
+      p:first-of-type span {
+        background-color: #84d690;
+      }
+      p:last-of-type span {
+        background-color: #8bbaff;
+      }
     }
+    .calendar-explanation-row:last-of-type {
+      p:first-of-type span {
+        background-color: #ff6464;
+      }
 
-    p:nth-of-type(2) span {
-      background-color: #8bbaff;
-    }
-
-    p:last-of-type span {
-      background-color: #ff6464;
+      p:last-of-type span {
+        border: 1px solid #000;
+        background-color: #fff;
+      }
     }
   }
 
@@ -76,8 +83,8 @@ export const Calendar = styled.div`
     .calendar-explanation {
       display: flex;
 
-      p:nth-of-type(2) {
-        margin: 0 30px;
+      .calendar-explanation-row:first-of-type {
+        margin-right: 60px;
       }
     }
   }

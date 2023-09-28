@@ -43,9 +43,15 @@ export default function CalendarTableData({ week = [] }) {
           const isSelected =
             startDate == currentDate ||
             (startDate <= currentDate && currentDate <= endDate);
-          return (
-            <td key={index}>
-              {dayInWeek.isAvailable && user ? (
+          if (dayInWeek.isOutdated) {
+            return (
+              <td key={index}>
+                <span>{dayInWeek.date}</span>
+              </td>
+            );
+          } else if (dayInWeek.isAvailable && user) {
+            return (
+              <td key={index}>
                 <button
                   className={isSelected ? "selected" : "available"}
                   onClick={() => {
@@ -54,15 +60,19 @@ export default function CalendarTableData({ week = [] }) {
                 >
                   {dayInWeek.date}
                 </button>
-              ) : (
+              </td>
+            );
+          } else {
+            return (
+              <td key={index}>
                 <span
                   className={dayInWeek.isAvailable ? "available" : "booked"}
                 >
                   {dayInWeek.date}
                 </span>
-              )}
-            </td>
-          );
+              </td>
+            );
+          }
         }
         return <td key={index}></td>;
       })}

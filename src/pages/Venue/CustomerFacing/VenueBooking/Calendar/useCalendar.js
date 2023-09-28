@@ -5,17 +5,6 @@ export default function useCalendar(currentBookings) {
 
   const getListOfDates = (selectedDate) => {
     const checkIfVenueIsAvailable = (dateToCheck, bookings) => {
-      //check if dateToCheck is in the past
-      const today = new Date();
-      const day = today.getDate().toString().padStart(2, "0");
-      const month = (today.getMonth() + 1).toString().padStart(2, "0");
-      const year = today.getFullYear().toString().padStart(4, "0");
-      const dateToday = parseInt(`${year}${month}${day}`);
-
-      if (extractDateNumber(dateToCheck) < dateToday) {
-        return false;
-      }
-
       //check if date is already booked
       for (let i = 0; i < bookings.length; i++) {
         const { dateFrom, dateTo } = bookings[i];
@@ -50,6 +39,13 @@ export default function useCalendar(currentBookings) {
 
     const dateList = [];
 
+    //Generate todays date, to see if selectedDate is outdated
+    const today = new Date();
+    const day = today.getDate().toString().padStart(2, "0");
+    const month = (today.getMonth() + 1).toString().padStart(2, "0");
+    const year = today.getFullYear().toString().padStart(4, "0");
+    const dateToday = parseInt(`${year}${month}${day}`);
+
     //Generate all dates, from first to last
     for (let i = 1; i <= lastDateOfMonth.getDate(); i++) {
       const currentDate = new Date(selectedYear, selectedMonth, i);
@@ -59,12 +55,14 @@ export default function useCalendar(currentBookings) {
       const yearString = selectedYear.toString().padStart(4, "0");
       const dateUTC = `${yearString}-${monthString}-${dateString}T12:00:00.000Z`;
       const isAvailable = checkIfVenueIsAvailable(dateUTC, currentBookings);
+      const isOutdated = extractDateNumber(dateUTC) < dateToday;
 
       dateList.push({
         date: i,
         weekdayIndex: currentDate.getDay(),
         dateUTC: dateUTC,
         isAvailable: isAvailable,
+        isOutdated: isOutdated,
       });
     }
 

@@ -58,15 +58,22 @@ export default function Calendar() {
       </div>
       <CalendarTable weeks={listOfDates} />
       <div className="calendar-explanation">
-        <p>
-          <span></span>Available
-        </p>
-        <p>
-          <span></span>Selected
-        </p>
-        <p>
-          <span></span>Booked
-        </p>
+        <div className="calendar-explanation-row">
+          <p>
+            <span></span>Available
+          </p>
+          <p>
+            <span></span>Selected
+          </p>
+        </div>
+        <div className="calendar-explanation-row">
+          <p>
+            <span></span>Booked
+          </p>
+          <p>
+            <span></span>Unavailable
+          </p>
+        </div>
       </div>
     </S.Calendar>
   );
