@@ -22,8 +22,11 @@ export default function Venue() {
   if (isError) {
     return (
       <section>
-        <h1>Error</h1>
-        <Feedback message="Encountered error when retrieving venue." />
+        <h1>Not available</h1>
+        <Feedback
+          message="Encountered error when retrieving venue."
+          status="error"
+        />
       </section>
     );
   }
