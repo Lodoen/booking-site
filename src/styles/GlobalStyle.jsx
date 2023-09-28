@@ -1,14 +1,16 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-    html{
-        --color-primary: #784A62;
-        --color-secondary: #452B3B;
+    html, body{
         height: 100%;
     }
 
+    html{
+        --color-primary: #784A62;
+        --color-secondary: #452B3B;
+    }
+
     body{
-        height: 100%;
         margin: 0;
         font-family: Tahoma,Verdana,Segoe,sans-serif; 
     }
