@@ -32,10 +32,11 @@ export default function useCalendar(currentBookings) {
       return true;
     };
 
-    //  First: get last date of current month, by generating first date of next month
-    //  and then subtracting one, meaning the previous date.
-    //  Second: generate array of all dates in the selected month
-    //  Third: convert all dates into an array of weeks
+    //  Generate an array of all dates in a selected month:
+    //    First: get last date of current month, by generating first date of next month
+    //    and then subtracting one, meaning the previous date.
+    //    Second: generate array of all dates in the selected month
+    //    Third: convert all dates into an array of weeks
     const selectedYear = selectedDate.getFullYear();
     const selectedMonth = selectedDate.getMonth();
 
