@@ -90,8 +90,11 @@ export default function Home() {
   if (isError) {
     return (
       <section>
-        <h1>Error</h1>
-        <Feedback message="Encountered error when retrieving venues." />
+        <h1>Not available</h1>
+        <Feedback
+          message="Encountered error when retrieving venues."
+          status="error"
+        />
       </section>
     );
   }
