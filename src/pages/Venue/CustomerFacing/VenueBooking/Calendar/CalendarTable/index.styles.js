@@ -44,8 +44,11 @@ export const CalendarTable = styled.table`
     .available {
       background-color: #84d690;
     }
-    button.available {
+    button {
       border-radius: 0;
+      &.selected {
+        background-color: #8bbaff;
+      }
       &:hover {
         cursor: pointer;
         text-decoration: underline;

@@ -36,26 +36,35 @@ export default function CalendarTableData({ week = [] }) {
     <tr>
       {daysInAWeekIndexes.map((index) => {
         const dayInWeek = week.find((day) => day.weekdayIndex === index);
-        return dayInWeek ? (
-          <td key={index}>
-            {dayInWeek.isAvailable && user ? (
-              <button
-                className="available"
-                onClick={() => {
-                  handleBookingChange(dayInWeek);
-                }}
-              >
-                {dayInWeek.date}
-              </button>
-            ) : (
-              <span className={dayInWeek.isAvailable ? "available" : "booked"}>
-                {dayInWeek.date}
-              </span>
-            )}
-          </td>
-        ) : (
-          <td key={index}></td>
-        );
+        if (dayInWeek) {
+          const currentDate = extractDateNumber(dayInWeek.dateUTC);
+          const startDate = extractDateNumber(yourBooking.start);
+          const endDate = extractDateNumber(yourBooking.end);
+          const isSelected =
+            startDate == currentDate ||
+            (startDate <= currentDate && currentDate <= endDate);
+          return (
+            <td key={index}>
+              {dayInWeek.isAvailable && user ? (
+                <button
+                  className={isSelected ? "selected" : "available"}
+                  onClick={() => {
+                    handleBookingChange(dayInWeek);
+                  }}
+                >
+                  {dayInWeek.date}
+                </button>
+              ) : (
+                <span
+                  className={dayInWeek.isAvailable ? "available" : "booked"}
+                >
+                  {dayInWeek.date}
+                </span>
+              )}
+            </td>
+          );
+        }
+        return <td key={index}></td>;
       })}
     </tr>
   );
