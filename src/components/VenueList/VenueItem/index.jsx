@@ -11,6 +11,7 @@ import { GiSittingDog } from "react-icons/gi";
 import * as S from "./index.styles";
 import undefinedImg from "../../../assets/no-image-available.png";
 import useCheckUndefined from "../../../hooks/useCheckUndefined";
+import Feedback from "../../Feedback";
 
 export default function VenueItem({
   id,
@@ -82,6 +83,6 @@ export default function VenueItem({
       </S.VenueItem>
     );
   } catch (error) {
-    return <div>error</div>;
+    return <Feedback message="Error loading venue item" status="error" />;
   }
 }
