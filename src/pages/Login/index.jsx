@@ -1,3 +1,11 @@
+import LoginForm from "./LoginForm";
+import * as S from "./index.styles";
+
 export default function Login() {
-  return <div>Login</div>;
+  return (
+    <S.LoginWrapper>
+      <h1>Login</h1>
+      <LoginForm />
+    </S.LoginWrapper>
+  );
 }

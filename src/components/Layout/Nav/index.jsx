@@ -1,31 +1,42 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { BsHouse, BsPlusLg } from "react-icons/bs";
+import { UserContext } from "../../../context/UserContext";
+import DropdownButton from "./DropdownButton";
+import * as S from "./index.styles";
 
 export default function Nav() {
+  const { user } = useContext(UserContext);
+
   return (
-    <nav>
+    <S.Nav>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/" className="navigation-element">
+            <span className="icon">
+              <BsHouse />
+            </span>
+            <span className="desc">Home</span>
+          </Link>
         </li>
-        <li>
-          <Link to="/venue/1">Venue 1</Link>
-        </li>
-        <li>
-          <Link to="/venue/1/manage">Manage venue 1</Link>
-        </li>
-        <li>
-          <Link to="/profile">Profile</Link>
-        </li>
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
-        <li>
-          <Link to="/register">Register</Link>
-        </li>
-        <li>
-          <Link to="/create">Create</Link>
-        </li>
+        {user && user.venueManager && (
+          <li>
+            <Link to="/create" className="navigation-element">
+              <span className="icon">
+                <BsPlusLg />
+              </span>
+              <span className="desc">Venue</span>
+            </Link>
+          </li>
+        )}
+        {user && user.name ? (
+          <DropdownButton />
+        ) : (
+          <Link to="/auth/login" className="login-href">
+            Login
+          </Link>
+        )}
       </ul>
-    </nav>
+    </S.Nav>
   );
 }

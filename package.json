@@ -1,7 +1,7 @@
 {
   "name": "booking-site",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.20.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,9 +11,14 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.15.0"
+    "react-hook-form": "^7.45.4",
+    "react-icons": "^4.10.1",
+    "react-router-dom": "^6.15.0",
+    "styled-components": "^6.0.7",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
