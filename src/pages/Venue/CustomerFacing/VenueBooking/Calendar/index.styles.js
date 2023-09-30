@@ -30,6 +30,7 @@ export const Calendar = styled.div`
         svg {
           width: 25px;
           height: 25px;
+          color: #000;
         }
       }
     }

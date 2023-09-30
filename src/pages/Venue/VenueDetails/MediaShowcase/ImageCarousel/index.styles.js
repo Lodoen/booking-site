@@ -22,6 +22,9 @@ export const ImageCarousel = styled.div`
       width: 25px;
       height: 25px;
     }
+    figure.basic-modal svg {
+      color: #000;
+    }
   }
 
   figure {

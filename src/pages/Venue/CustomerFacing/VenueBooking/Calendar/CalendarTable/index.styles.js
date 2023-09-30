@@ -46,6 +46,7 @@ export const CalendarTable = styled.table`
     }
     button {
       border-radius: 0;
+      color: #000;
       &.selected {
         background-color: #8bbaff;
       }

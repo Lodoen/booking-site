@@ -44,7 +44,7 @@ export default function ImageCarousel({
             onClick={() => handleMediaChange(-1)}
             className="carousel-button"
           >
-            <figure>
+            <figure className={isBasicModal ? "basic-modal" : ""}>
               <BsArrowLeft />
             </figure>
           </button>
@@ -55,7 +55,7 @@ export default function ImageCarousel({
             onClick={() => handleMediaChange(1)}
             className="carousel-button"
           >
-            <figure>
+            <figure className={isBasicModal ? "basic-modal" : ""}>
               <BsArrowRight />
             </figure>
           </button>

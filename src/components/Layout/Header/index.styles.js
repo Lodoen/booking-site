@@ -22,6 +22,11 @@ export const Header = styled.header`
       margin: 0;
       align-items: center;
       justify-content: center;
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
     }
 
     a {

@@ -31,6 +31,7 @@ export const FilterWrapper = styled.div`
 
   .filter-button {
     background-color: #fff;
+    color: #000;
     border: 1px solid #000;
     border-radius: 10px;
     margin-top: 10px;
