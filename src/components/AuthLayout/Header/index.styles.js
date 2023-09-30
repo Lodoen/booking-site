@@ -7,5 +7,10 @@ export const Header = styled.header`
     justify-content: center;
     max-width: 300px;
     margin: 0 auto;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
   }
 `;
