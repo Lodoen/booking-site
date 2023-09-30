@@ -1,4 +1,3 @@
-// import { useEffect, useState } from "react";
 import Filter from "./Filter";
 import SearchBar from "./SearchBar";
 import * as S from "./index.styles";

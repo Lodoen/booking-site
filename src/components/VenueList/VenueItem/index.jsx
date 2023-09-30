@@ -40,7 +40,9 @@ export default function VenueItem({
               <figure>
                 <BsFillStarFill />
               </figure>
-              {rating}
+              <span>
+                {rating && typeof rating === "number" ? rating.toFixed(0) : 0}
+              </span>
             </div>
           </div>
           <div className="detail">
