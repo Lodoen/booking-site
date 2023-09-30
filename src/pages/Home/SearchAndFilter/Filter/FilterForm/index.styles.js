@@ -71,6 +71,11 @@ export const FilterForm = styled(BaseForm)`
     margin: 30px 0 10px 0;
   }
 
+  .exit-button figure svg,
+  .clear-button {
+    color: #000;
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.screen.medium}) {
     .form-content {
       padding: 0 20px;

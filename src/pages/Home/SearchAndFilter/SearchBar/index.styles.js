@@ -24,6 +24,7 @@ export const SearchContainer = styled.div`
       border-bottom: 1px solid #000;
       cursor: pointer;
       figure {
+        color: #000;
         margin: 0;
         display: flex;
         align-items: center;
