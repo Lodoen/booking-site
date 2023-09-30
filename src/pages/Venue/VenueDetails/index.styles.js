@@ -9,6 +9,7 @@ export const VenueDetails = styled(VenueShowcaseWrapper)`
 
   h1 {
     font-size: 1.5rem;
+    margin-top: 0px;
   }
 
   h2 {
@@ -34,6 +35,10 @@ export const VenueDetails = styled(VenueShowcaseWrapper)`
   @media screen and (min-width: ${({ theme }) => theme.screen.max}) {
     .details-amenities-wrapper > section {
       margin: 0;
+    }
+
+    h1 {
+      margin-top: 20px;
     }
   }
 `;

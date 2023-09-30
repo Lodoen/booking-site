@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const MediaShowcase = styled.div`
+  margin-bottom: 30px;
+
   .basic-carousel .media-wrapper {
     width: 200px;
     height: 200px;
@@ -89,6 +91,8 @@ export const MediaShowcase = styled.div`
     }
   }
   @media screen and (min-width: ${({ theme }) => theme.screen.max}) {
+    margin-bottom: 20px;
+
     .basic-carousel .media-wrapper {
       width: 300px;
       height: 300px;
