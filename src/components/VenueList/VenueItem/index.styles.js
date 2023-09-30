@@ -40,11 +40,15 @@ export const VenueItem = styled.div`
   .title-and-rating {
     justify-content: space-between;
     margin-top: 10px;
+
+    .detail {
+      margin: 10px 0 10px 10px;
+      justify-content: end;
+    }
   }
 
   .detail {
     margin: 10px 0;
-
     figure,
     figure svg {
       width: 20px;
