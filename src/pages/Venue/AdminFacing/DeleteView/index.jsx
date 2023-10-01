@@ -8,9 +8,11 @@ export default function DeleteView({ id, setIsShowingDeleteView }) {
   const [isDeleted, setIsDeleted] = useState(false);
   const { feedbackMessage, feedbackType, setFeedback } = useFeedback();
   const { remove } = useVenue();
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const removeVenue = async () => {
     try {
+      setIsDisabled(true);
       setFeedback("Loading ...", "info");
       const { fetchedRemove } = await remove(id);
 
@@ -24,6 +26,7 @@ export default function DeleteView({ id, setIsShowingDeleteView }) {
       }
     } catch (error) {
       console.log(error);
+      setIsDisabled(false);
       setFeedback("We encountered error on deletion.", "error");
     }
   };
@@ -42,12 +45,17 @@ export default function DeleteView({ id, setIsShowingDeleteView }) {
             Are you sure you want to delete the venue? This action is
             irreversible.
           </p>
-          <button onClick={() => removeVenue()} className="base-button">
+          <button
+            onClick={() => removeVenue()}
+            className="base-button"
+            disabled={isDisabled}
+          >
             I`m sure, delete the venue
           </button>
           <button
             onClick={() => setIsShowingDeleteView(false)}
             className="base-button"
+            disabled={isDisabled}
           >
             No, back to venue page
           </button>

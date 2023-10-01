@@ -27,7 +27,6 @@ export default function AdminView({
       const { fetchedUpdate, stringifiedUpdate } = await update(id, body);
 
       if (fetchedUpdate.ok) {
-        setIsDisabled(false);
         setFeedback("Venue updated!");
         setVenueDetails((prevDetails) => ({
           ...stringifiedUpdate,
@@ -35,11 +34,12 @@ export default function AdminView({
         }));
         setIsShowingAdminView(false);
       } else {
-        setIsDisabled(false);
         setFeedback(stringifiedUpdate.errors[0].message, "error");
       }
     } catch (error) {
       setFeedback("Encountered error on update", "error");
+    } finally {
+      setIsDisabled(false);
     }
   };
 
