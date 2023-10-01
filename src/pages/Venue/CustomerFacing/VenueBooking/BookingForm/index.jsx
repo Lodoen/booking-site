@@ -58,7 +58,7 @@ export default function BookingForm({ venueInfo }) {
             stringifiedUpdate,
           ]);
         } else {
-          setFeedback(stringifiedUpdate.errors[0].message);
+          setFeedback(stringifiedUpdate.errors[0].message, "error");
         }
       } catch (error) {
         setFeedback("Encountered error on booking.", "error");
