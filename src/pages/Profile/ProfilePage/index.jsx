@@ -40,6 +40,15 @@ export default function ProfilePage({ user }) {
     );
   }
 
+  if (data.statusCode && (data.statusCode == 401 || data.statusCode == 404)) {
+    return (
+      <section>
+        <h1>No profile found</h1>
+        <Feedback message="No profile with matching name" status="error" />
+      </section>
+    );
+  }
+
   const { avatar, name, venueManager, venues, bookings } = profile;
   const sortedVenues =
     venues && Array.isArray(venues)
