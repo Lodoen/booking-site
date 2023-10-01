@@ -17,11 +17,9 @@ export const SearchContainer = styled.div`
       border: 0;
       position: absolute;
       right: 10px;
-      background-color: #fff;
+      background-color: transparent;
       height: 100%;
       padding: 0 10px;
-      border-top: 1px solid #000;
-      border-bottom: 1px solid #000;
       cursor: pointer;
       figure {
         color: #000;
