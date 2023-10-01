@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -39,8 +39,8 @@ export default function RegisterForm() {
   const { login, registerUser } = useAuth();
   const { save } = useLocalStorage("user");
   const { setUser } = useContext(UserContext);
-
   const { feedbackMessage, feedbackType, setFeedback } = useFeedback();
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const {
     register,
@@ -52,6 +52,7 @@ export default function RegisterForm() {
 
   async function onSubmit(data) {
     try {
+      setIsDisabled(true);
       setFeedback("Loading register...", "info");
       const { fetchedRegister, stringifiedRegister } = await registerUser(data);
 
@@ -71,6 +72,8 @@ export default function RegisterForm() {
       }
     } catch (error) {
       setFeedback("Encountered error on register.", "error");
+    } finally {
+      setIsDisabled(false);
     }
   }
 
@@ -114,7 +117,7 @@ export default function RegisterForm() {
 
       <Link to="/auth/login">Login &gt;&gt;</Link>
 
-      <button type="submit" className="base-button">
+      <button type="submit" className="base-button" disabled={isDisabled}>
         Register
       </button>
 
