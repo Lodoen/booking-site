@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import VenueManagement from "../../components/forms/VenueManagement";
@@ -11,9 +11,11 @@ export default function Create() {
   const { create } = useVenue();
   const navigate = useNavigate();
   const { feedbackMessage, feedbackType, setFeedback } = useFeedback();
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const createVenue = async (body) => {
     try {
+      setIsDisabled(true);
       setFeedback("Loading ...", "info");
       const { fetchedCreate, stringifiedCreate } = await create(body);
 
@@ -27,13 +29,14 @@ export default function Create() {
       }
     } catch (error) {
       console.log(error);
+      setIsDisabled(false);
       setFeedback("Encountered error on create", "error");
     }
   };
 
   return user && user.venueManager ? (
     <section>
-      <VenueManagement submitFunction={createVenue} />
+      <VenueManagement submitFunction={createVenue} isDisabled={isDisabled} />
       <Feedback message={feedbackMessage} status={feedbackType} />
     </section>
   ) : (

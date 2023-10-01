@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -26,6 +26,7 @@ export default function UpdateProfile({
   const { update } = useProfile();
   const { save } = useLocalStorage("user");
   const { feedbackMessage, feedbackType, setFeedback } = useFeedback();
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const {
     register,
@@ -37,6 +38,7 @@ export default function UpdateProfile({
 
   async function onSubmit(data) {
     try {
+      setIsDisabled(true);
       setFeedback("Loading ...", "info");
       const { fetchedUpdate, stringifiedUpdate } = await update(data);
 
@@ -54,6 +56,8 @@ export default function UpdateProfile({
       }
     } catch (error) {
       setFeedback("Encountered error on update", "error");
+    } finally {
+      setIsDisabled(false);
     }
   }
 
@@ -64,7 +68,7 @@ export default function UpdateProfile({
         <input {...register("avatar")} type="url" />
         <p>{errors.avatar?.message}</p>
       </div>
-      <button type="submit" className="base-button">
+      <button type="submit" className="base-button" disabled={isDisabled}>
         Update
       </button>
       <Feedback message={feedbackMessage} status={feedbackType} />

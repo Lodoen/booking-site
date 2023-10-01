@@ -49,6 +49,7 @@ export default function YourBookingItem({
         );
       }
     } catch (error) {
+      setIsDisabled(false);
       setFeedback("Encountered error on cancel.", "error");
     }
   };

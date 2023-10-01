@@ -14,6 +14,7 @@ export default function BookingForm({ venueInfo }) {
   const { create } = useBooking();
   const { feedbackMessage, feedbackType, setFeedback } = useFeedback();
   const { user } = useContext(UserContext);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const { yourBooking, setYourBooking, currentBookings, setCurrentBookings } =
     useContext(BookingContext);
@@ -46,6 +47,7 @@ export default function BookingForm({ venueInfo }) {
       };
 
       try {
+        setIsDisabled(true);
         setFeedback("Loading ...", "info");
         const { fetchedUpdate, stringifiedUpdate } = await create(body);
 
@@ -58,10 +60,12 @@ export default function BookingForm({ venueInfo }) {
             stringifiedUpdate,
           ]);
         } else {
-          setFeedback(stringifiedUpdate.errors[0].message);
+          setFeedback(stringifiedUpdate.errors[0].message, "error");
         }
       } catch (error) {
         setFeedback("Encountered error on booking.", "error");
+      } finally {
+        setIsDisabled(false);
       }
     } else {
       if (!start || !end) {
@@ -116,7 +120,7 @@ export default function BookingForm({ venueInfo }) {
               ? `${totalPrice}kr`
               : "undecided"}
           </p>
-          <button type="submit" className="base-button">
+          <button type="submit" className="base-button" disabled={isDisabled}>
             Book venue
           </button>
         </form>
