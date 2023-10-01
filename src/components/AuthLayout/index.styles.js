@@ -16,10 +16,14 @@ export const Container = styled.div`
     color: #fff;
     border-radius: 5px;
 
-    &:hover {
+    &:enabled:hover,
+    &:disabled {
+      background-color: ${({ theme }) => theme.colors.secondary};
+    }
+
+    &:enabled:hover {
       cursor: pointer;
       text-decoration: underline;
-      background-color: ${({ theme }) => theme.colors.secondary};
     }
   }
 
